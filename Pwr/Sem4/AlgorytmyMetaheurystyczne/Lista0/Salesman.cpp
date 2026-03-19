@@ -83,7 +83,7 @@ void randomPermutate(int arr[], int size)
     }
 }
 
-void evaluateMin(int n, vector<vector<int>> distances, int batchSize)
+void evaluateMin(int n, vector<vector<int>> distances, int batchSize, string fileName)
 {
     int permutation[n];
     int batches = 1000/batchSize;
@@ -93,15 +93,30 @@ void evaluateMin(int n, vector<vector<int>> distances, int batchSize)
         }
 
         int avgSum = 0;
+
+        int bestRouteLength = INT_MAX;
+        int globalBestPerm[n] = {0};
+
         for(int p=0;p<batches;p++)
         {
             int randomLengths[batchSize] = {0};
             for(int q=0;q<batchSize;q++)
             {
                 randomPermutate(permutation, n);
+                int length = 0;
                 for(int k=1;k<n;k++)
                 {
-                    randomLengths[q]+=distances[permutation[k-1]-1][permutation[k]-1];
+                    length+=distances[permutation[k-1]-1][permutation[k]-1];
+                }
+                randomLengths[q] = length;
+
+                if(length < bestRouteLength)
+                {
+                    bestRouteLength = length;
+                    for(int t=0;t<n;t++)
+                    {
+                        globalBestPerm[t] = permutation[t];
+                    }
                 }
             }
 
@@ -110,6 +125,18 @@ void evaluateMin(int n, vector<vector<int>> distances, int batchSize)
             cout << minimum << " ";
         }
         cout << "\n" << fixed << setprecision(2) << (float)avgSum / batches << "\n";
+
+        if(batchSize == 1000)
+        {
+            ofstream out("bestFoundRoutes.txt", ios::app);
+
+            out << fileName << "\n";
+            for(int x : globalBestPerm)
+            {
+                out << x << " ";
+            }
+            out << "\n" << bestRouteLength << "\n\n";
+        }
 }
 
 void Salesman()
@@ -122,7 +149,7 @@ void Salesman()
         vector<vector<int>> distances = calculateDistances(cities);
         int n = cities.size();
 
-        evaluateMin(n, distances, 10);
+        evaluateMin(n, distances, 10, fileNames[i]);
     }
 
     cout << "\n\n";
@@ -135,7 +162,7 @@ void Salesman()
         vector<vector<int>> distances = calculateDistances(cities);
         int n = cities.size();
 
-        evaluateMin(n, distances, 50);
+        evaluateMin(n, distances, 50, fileNames[i]);
     }
 
     cout << "\n\n";
@@ -148,11 +175,13 @@ void Salesman()
         vector<vector<int>> distances = calculateDistances(cities);
         int n = cities.size();
 
-        evaluateMin(n, distances, 1000);
+        evaluateMin(n, distances, 1000, fileNames[i]);
     }
 }
 
 int main()
-{
-   Salesman();
+{  
+    ofstream("bestFoundRoutes.txt").close();
+    srand(time(0));
+    Salesman();
 }
