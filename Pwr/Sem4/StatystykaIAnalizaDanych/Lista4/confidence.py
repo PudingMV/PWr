@@ -34,6 +34,8 @@ covers = np.array([r[2] for r in results])
 coverage_empirical = np.mean(covers) * 100
 mean_width = np.mean(intervals[:,1] - intervals[:,0])
 
+print("Podpunkt a)")
+
 print(f"Empiryczna częstość pokrycia: {coverage_empirical:.2f}%")
 print(f"Średnia szerokość przedziału ufności: {mean_width:.2f}")
 
@@ -62,6 +64,8 @@ print(f"Procent odcinków czerwonych: {percent_red:.2f}%")
 
 # c)
 sample_sizes = [5, 9, 30, 100]
+
+print("Podpunkt c)")
 
 for n in sample_sizes:
     results = [ci_t_student(mu, sigma, n) for _ in range(1000)]

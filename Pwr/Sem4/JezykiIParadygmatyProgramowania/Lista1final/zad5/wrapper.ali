@@ -1,0 +1,80 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+
+U wrapper%b		wrapper.adb		e5e40046 NE OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+
+U wrapper%s		wrapper.ads		8ae37807 EE NE OO PK
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c%s	i-c.adb			i-c.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-c.ads		20240521074738 5c5a6c17 interfaces.c%s
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D wrapper.ads		20260330094233 d6b91410 wrapper%s
+D wrapper.adb		20260330094208 6f077841 wrapper%b
+G a e
+G c Z s s [cgcd wrapper 11 13 none]
+G c Z s s [cminimaldivisor wrapper 14 13 none]
+G c Z s s [ctotient wrapper 17 13 none]
+G c Z s s [cdiophantic wrapper 20 14 none]
+G c Z s s [gogcd wrapper 23 13 none]
+G c Z s s [gominimaldivisor wrapper 26 13 none]
+G c Z s s [gototient wrapper 29 13 none]
+G c Z s s [godiophantic wrapper 32 14 none]
+G c Z s b [godiophantic_wrapper wrapper 35 13 none]
+G c Z s s [pairIP wrapper 6 9 none]
+X 3 interfac.ads
+38K9*Interfaces 232e15 9|1r6 1r24 7r16 8r16 11r25 11r50 14r33 14r58 17r26
+. 17r51 20r33 20r62 23r26 23r51 26r34 26r59 29r27 29r52 32r34 32r63 35r41
+. 10|1r6 1r24 5r41 6r14
+X 4 i-c.ads
+29K20*C 597e17 9|1w17 1r35 7r27 8r27 11r36 11r61 14r44 14r69 17r37 17r62
+. 20r44 20r73 23r37 23r62 26r45 26r70 29r38 29r63 32r45 32r74 35r52 10|1w17
+. 1r35 5r52 6r25
+57I9*int<integer> 9|7r29 8r29 11r38 11r63 14r46 14r71 17r39 17r64 20r46 20r75
+. 23r39 23r64 26r47 26r72 29r40 29r65 32r47 32r76 35r54 10|5r54 6r27
+X 9 wrapper.ads
+3K9*Wrapper 37l5 37e12 10|3b14 12l5 12t12
+6R9*Pair 9e14 35r66 10|5r66
+7i7*First{4|57I9} 10|9m15
+8i7*Second{4|57I9} 10|9m27
+11V13*cGCD{4|57I9} 11>18 11>21 12b<c,NWD>21
+11i18 A{4|57I9}
+11i21 B{4|57I9}
+14V13*cMinimalDivisor{4|57I9} 14>29 15b<c,minimalDivisor>21
+14i29 N{4|57I9}
+17V13*cTotient{4|57I9} 17>22 18b<c,Totient>21
+17i22 N{4|57I9}
+20U14*cDiophantic 20>26 20>29 20<51 20<54 21b<c,diophantic>21
+20i26 A{4|57I9}
+20i29 B{4|57I9}
+20i51 X{4|57I9}
+20i54 Y{4|57I9}
+23V13*goGCD{4|57I9} 23>19 23>22 24b<c,goGCD>21
+23i19 A{4|57I9}
+23i22 B{4|57I9}
+26V13*goMinimalDivisor{4|57I9} 26>30 27b<c,goMinimalDivisor>21
+26i30 N{4|57I9}
+29V13*goTotient{4|57I9} 29>23 30b<c,goTotient>21
+29i23 N{4|57I9}
+32U14*goDiophantic 32>27 32>30 32<52 32<55 33b<c,goDiophantic>21 10|8s7
+32i27 A{4|57I9}
+32i30 B{4|57I9}
+32i52 X{4|57I9}
+32i55 Y{4|57I9}
+35V13*goDiophantic_wrapper{6R9} 35>34 35>37 10|5b13 10l8 10t28
+35i34 A{4|57I9} 10|5b34 8r20
+35i37 B{4|57I9} 10|5b37 8r23
+X 10 wrapper.adb
+6i7 X{4|57I9} 8m26 9r24
+6i10 Y{4|57I9} 8m29 9r37
+

@@ -1,0 +1,89 @@
+V "GNAT Lib v13"
+M P W=b
+P ZX
+
+RN
+RV NO_IO
+RV NO_DYNAMIC_SIZED_OBJECTS
+
+U maineuler%b		maineuler.adb		9dfa1c4a NE OO SU IL
+W ada%s			ada.ads			ada.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W euler%s		euler.adb		euler.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.concat_4%s	s-conca4.adb		s-conca4.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-assert.ads		20240521074737 ba465f5c ada.assertions%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nubinu.ads		20240521074738 93f1f3d1 ada.numerics.big_numbers%s
+D a-nbnbig.ads		20240521074738 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D euler.ads		20260324110742 beab674b euler%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D maineuler.adb		20260324102649 7f7d1a52 maineuler%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
+D s-casuti.ads		20240521074738 cf13d755 system.case_util%s
+D s-conca2.ads		20240521074738 b5fb73f7 system.concat_2%s
+D s-conca4.ads		20240521074738 33f85f3e system.concat_4%s
+D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-imagei.ads		20240521074738 c707dfd0 system.image_i%s
+D s-imgint.ads		20240521074738 d4a52a9b system.img_int%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
+D s-valint.ads		20240521074738 1f610d7a system.val_int%s
+D s-valuns.ads		20240521074738 e8a1f424 system.val_uns%s
+D s-valuti.ads		20240521074738 fcd603d8 system.val_util%s
+D s-valuei.ads		20240521074738 11081e09 system.value_i%s
+D s-vaispe.ads		20240521074738 44130d39 system.value_i_spec%s
+D s-valueu.ads		20240521074738 18770347 system.value_u%s
+D s-vauspe.ads		20240521074738 a67b2f28 system.value_u_spec%s
+D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
+D s-widuns.ads		20240521074738 866a5800 system.wid_uns%s
+D s-widthu.ads		20240521074738 b32f15e2 system.width_u%s
+G a e
+G c Z b b [maineuler standard 4 11 none]
+G r c none [maineuler standard 4 11 none] [gcd euler 7 12 none]
+G r c none [maineuler standard 4 11 none] [minimaldivisor euler 9 12 none]
+G r c none [maineuler standard 4 11 none] [totient euler 11 12 none]
+G r c none [maineuler standard 4 11 none] [diophantic euler 13 12 none]
+X 1 ada.ads
+16K9*Ada 20e8 18|1r6 1r23
+X 13 a-textio.ads
+58K13*Text_IO 787e16 18|1w10 1r27
+566U14*Put_Line 18|7s3 8s3 9s3 11s3
+X 15 euler.ads
+1K9*Euler 16e10 18|2w6 5r7 7r50 8r55 9r47 10r8
+2R8*Pair 5e13 18|5r13
+3i5*First{integer} 18|11r56
+4i5*Second{integer} 18|11r91
+7V12*gcd{integer} 8i<c,adaGCD>21 18|7s56
+9V12*minimalDivisor{integer} 10i<c,adaMinimalDivisor>21 18|8s61
+11V12*Totient{integer} 12i<c,adaTotient>21 18|9s53
+13V12*diophantic{2R8} 14i<c,adaDiophantic>21 18|10s14
+X 18 maineuler.adb
+4U11*maineuler 4b11 12l5 12t14
+5r3 P{15|2R8} 10m3 11r54 11r89
+

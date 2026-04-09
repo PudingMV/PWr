@@ -1,12 +1,8 @@
 V "GNAT Lib v13"
-A -gnatA
-A -mtune=generic
-A -march=x86-64
 P ZX
 
 RN
 RV NO_DIRECT_BOOLEAN_OPERATORS
-RV NO_IMPLEMENTATION_PRAGMAS
 
 U euler%b		euler.adb		d89339bd NE OO PK
 
