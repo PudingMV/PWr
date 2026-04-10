@@ -1,4 +1,7 @@
 V "GNAT Lib v13"
+A -fPIC
+A -mtune=generic
+A -march=x86-64
 P ZX
 
 RN
@@ -8,8 +11,8 @@ U euler%b		euler.adb		d89339bd NE OO PK
 
 U euler%s		euler.ads		beab674b EE NE OO PK
 
-D euler.ads		20260324110742 beab674b euler%s
-D euler.adb		20260324102649 66385ef6 euler%b
+D euler.ads		20260409181223 beab674b euler%s
+D euler.adb		20260409181223 66385ef6 euler%b
 D system.ads		20240521074738 426dafb8 system%s
 G a e
 G c Z s b [gcd euler 7 12 none]

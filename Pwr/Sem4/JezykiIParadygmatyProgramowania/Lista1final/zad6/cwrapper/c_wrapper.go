@@ -1,13 +1,18 @@
 package cwrapper
 
-/*export LD_LIBRARY_PATH=./zad1:./zad2:./zad3/euler_c
+/*
+#cgo CFLAGS: -I${SRCDIR}/../../zad1
+#cgo LDFLAGS: -L${SRCDIR}/../../zad1 -leuler
 
-go build -o test_all main.go c_wrapper.go ada_wrapper.go go_wrapper.go
-./test_all*/
-
+#include "../zad1/euler.h"
+*/
 import "C"
 
-// C library functions
+type Pair struct {
+    First  C.int
+    Second C.int
+}
+
 func GCD_C(a, b int) int {
     return int(C.NWD(C.int(a), C.int(b)))
 }
@@ -21,7 +26,6 @@ func Totient_C(n int) int {
 }
 
 func Diophantic_C(a, b int) (int, int) {
-    var x, y C.int
-    C.diophantic(C.int(a), C.int(b), &x, &y)
-    return int(x), int(y)
+    p := C.diophantic(C.int(a), C.int(b))
+    return int(p.first), int(p.second)
 }

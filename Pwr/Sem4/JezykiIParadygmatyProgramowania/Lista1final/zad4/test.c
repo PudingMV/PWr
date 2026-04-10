@@ -22,15 +22,3 @@ int main() {
 
     return 0;
 }
-
-/*gcc zad4/test.c \
-zad4/wrapper.o \
- -Lzad2 -Lzad3/euler_c \
- -lada_euler -lgo_euler -lgnat -lpthread -lm \
- -o zad4/test_program \
- -Wl,-rpath=zad2:zad3/euler_c -ldl*/
-
-/*gnatmake test_wrapper.adb \
-    -L../zad1 -leuler \
-    -L../zad3/euler_c -lgo_euler \
-    -o test_program*/

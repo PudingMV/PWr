@@ -1,7 +1,7 @@
 package adawrapper
 
 /*
-#cgo LDFLAGS: -L../zad2 -lada_euler
+#cgo LDFLAGS: -L${SRCDIR}/../../zad2 -lada_euler
 #include <stdint.h>
 
 // funkcje C-callable z Ada
