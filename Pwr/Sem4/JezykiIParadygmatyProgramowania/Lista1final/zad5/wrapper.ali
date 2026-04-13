@@ -19,8 +19,8 @@ D system.ads		20240521074738 426dafb8 system%s
 D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
 D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
 D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
-D wrapper.ads		20260409181223 d6b91410 wrapper%s
-D wrapper.adb		20260409181223 6f077841 wrapper%b
+D wrapper.ads		20260330094233 d6b91410 wrapper%s
+D wrapper.adb		20260330094208 6f077841 wrapper%b
 G a e
 G c Z s s [cgcd wrapper 11 13 none]
 G c Z s s [cminimaldivisor wrapper 14 13 none]
