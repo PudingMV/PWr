@@ -1,7 +1,23 @@
 mod ring;
 use ring::Ring;
+use std::io::{self, Write};
 
 fn main() {
+
+    //some input test
+    let mut input = String::new();
+
+    print!("Enter value: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+
+    let x = R5::new(input.trim().parse().unwrap());
+
+    println!("You wrote to ring: {}\n", x);
+
+    println!("You wrote to ring: {}\n", x);
+
     type R5 = Ring<5>;
 
     let mut a = R5::new(4);
