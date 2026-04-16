@@ -3,26 +3,26 @@ package main
 import "C"
 import "zad3/euler"
 
-func GoGCD(a, b C.int) C.int {
+//export goGCD
+func goGCD(a, b C.int) C.int {
     return C.int(euler.GCD(int(a), int(b)))
 }
 
-func GoMinimalDivisor(n C.int) C.int {
+//export goMinimalDivisor
+func goMinimalDivisor(n C.int) C.int {
     return C.int(euler.MinimalDivisor(int(n)))
 }
 
-func GoTotient(n C.int) C.int {
+//export goTotient
+func goTotient(n C.int) C.int {
     return C.int(euler.Totient(int(n)))
 }
 
-type CPair struct {
-    First  C.int
-    Second C.int
-}
-
-func GoDiophantic(a, b C.int) CPair {
+//export goDiophantic
+func goDiophantic(a, b C.int, x *C.int, y *C.int) {
     p := euler.Diophantic(int(a), int(b))
-    return CPair{First: C.int(p.First), Second: C.int(p.Second)}
+    *x = C.int(p.First)
+    *y = C.int(p.Second)
 }
 
 func main() {}
