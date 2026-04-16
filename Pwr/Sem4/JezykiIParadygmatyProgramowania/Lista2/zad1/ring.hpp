@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdexcept>
 
-using namespace std;
 
 template<unsigned int n>
 class Ring
@@ -14,8 +13,9 @@ class Ring
     
     public:
     static constexpr unsigned int mod = n;
+    static_assert(n > 0, "Modulo must be positive");
 
-    Ring(int v = 0) : value((v % n + n) % n) {}
+    explicit Ring(int v = 0) : value((v % n + n) % n) {}
     int get() const {return value;}
 
     //mathematical operation
@@ -83,9 +83,28 @@ class Ring
         return value >= other.value;
     }
 
-    friend ostream& operator<<(std::ostream& os, const Ring& r)
+    //streams
+    friend std::ostream& operator<<(std::ostream& os, const Ring& r)
     {
         return os << r.value;
+    }
+    friend std::istream& operator>>(std::istream& is, Ring& r)
+    {
+        int v;
+        is >> v;
+        r = Ring(v);
+        return is;
+    }
+
+    //int conversion for convinience
+    Ring& operator+=(int v) { return *this += Ring(v); }
+    Ring& operator-=(int v) { return *this -= Ring(v); }
+    Ring& operator*=(int v) { return *this *= Ring(v); }
+    Ring& operator/=(int v) { return *this /= Ring(v); }
+    Ring& operator=(int v)
+    {
+        value = (v % n + n) % n;
+        return *this;
     }
 
     private:
