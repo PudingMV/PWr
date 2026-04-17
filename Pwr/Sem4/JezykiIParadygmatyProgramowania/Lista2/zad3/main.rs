@@ -57,6 +57,13 @@ fn main() {
     println!("a <= b -> {}", a <= b);
     println!("a >= b -> {}\n", a >= b);
 
+    // conversion
+    println!("a = {}, b = {}, x = {}\n", a, b, x);
+    println!("Conversion test:");
+    println!("a as int -> {}", a.to_int());
+    println!("b as int -> {}", b.to_int());
+    println!("x as int -> {}\n", x.to_int());
+
     //Test: -1
     let c = R5::new(-1);
 
