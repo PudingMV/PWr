@@ -16,8 +16,6 @@ fn main() {
 
     println!("You wrote to ring: {}\n", x);
 
-    println!("You wrote to ring: {}\n", x);
-
     type R5 = Ring<5>;
 
     let mut a = R5::new(4);
