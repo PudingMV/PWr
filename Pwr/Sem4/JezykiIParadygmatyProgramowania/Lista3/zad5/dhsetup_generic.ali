@@ -1,0 +1,96 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+
+U dhsetup_generic%b	dhsetup_generic.adb	e407512d NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W system%s		system.ads		system.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+
+U dhsetup_generic%s	dhsetup_generic.ads	ba9fdacd BN EE NE OO PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nudira.ads		20240521074738 5984dff3 ada.numerics.discrete_random%s
+D a-nudira.adb		20240521074738 0bfd6ec4 ada.numerics.discrete_random%b
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D dhsetup_generic.ads	20260429005952 ba9fdacd dhsetup_generic%s
+D dhsetup_generic.adb	20260429010717 071c5413 dhsetup_generic%b
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-rannum.ads		20240521074738 95815eca system.random_numbers%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+G a e
+G c Z s b [dhsetup_generic standard 10 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 12|1r6 61r25
+X 3 a-numeri.ads
+16K13*Numerics 35e17 12|1r10 61r29
+X 4 a-nudira.ads
+44k22*Discrete_Random 81e33 12|1w19 61r38
+50R9 Generator<17|65R9> 12|62r16[61]
+52V13 Random{integer} 12|66s29[61]
+61U14 Reset<17|103p14> 12|90s10[61]
+X 11 dhsetup_generic.ads
+2+10 T 4r31 4r41 5r48 6r30 12r25 12r48 13r34 16r17 12|5r25 5r48 6r18 7r18
+. 47r31 64r35 69r35 73r29 84r34
+4V20 "*"{2+10} 4>24 4>27 12|12s34 14s26
+4*24 A{2+10}
+4*27 B{2+10}
+5V19 FromInt{2+10} 5>28 12|6s23 66s16
+5i28 V{integer}
+6V19 ToInt{integer} 6>26 12|52s16
+6*26 A{2+10}
+8i5 Modulo{positive} 12|48r39 60r46
+10k9*DHSetup_Generic 2z10 4z20 5z19 6z19 8z5 16E5 18l5 18e20 12|3b14 93l5
+. 93t20
+12V14*Power{2+10} 12>21 12>28 12|5b14 18l9 18t14 52s22
+12*21 A{2+10} 12|5b21 7r23
+12i28 B{natural} 12|5b28 8r29
+13V14*GetGenerator{2+10} 12|84b14 87t8
+16*5 Generator{2+10} 12|86r16 91m5
+X 12 dhsetup_generic.adb
+6*9 Result{11|2+10} 12m17 12r27 17r16
+7*9 Base{11|2+10} 12r36 14m13 14r21 14r28
+8i9 Exp{natural} 10r15 11r16 15m13 15r20
+20A10 Int_Array(integer)<integer> 22r48 24r19 49r19
+22V14 PrimeFactors{20A10} 22b14 22>28 45l9 45t21 49s32
+22i28 N{integer} 23r27
+23i9 Temp{integer} 28r24 29r16 32r23 33m21 33r29 39r12 41r31
+24a9 Factors{20A10} 31m17 41m13 44r16
+25i9 Count{natural} 30m17 30r26 31r25 40m13 40r22 41r21 44r29
+26i9 I{integer} 28r15 28r19 29r25 31r35 32r32 33r36 36m13 36r18
+47V14 IsGenerator{boolean} 47b14 47>27 58l9 58t20 75s20
+47*27 A{11|2+10} 52r28
+48i9 PMinus1{integer} 49r45 52r39
+49a9 Factors{20A10} 51r18
+51i13 Q{integer} 52r49
+60I13 Range_Type{integer} 61r54
+61K13 Rand[4|44] 62r11 66r24 90r5
+62r5 Gen{4|50R9[61]} 66r36 90r16
+64V14 RandomElement{11|2+10} 64b14 67t8 73s34
+69V14 FindGenerator{11|2+10} 69b14 82t8 91s18
+71i13 I{integer}
+73*17 Candidate{11|2+10} 75r32 76r28
+

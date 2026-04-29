@@ -1,0 +1,128 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_LONG_LONG_INTEGERS
+
+U ring_generic%b	ring_generic.adb	8b8c312a NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+U ring_generic%s	ring_generic.ads	6813b0b2 BN EE NE OO PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-inteio.ads		20240521074738 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
+D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-tiinio.ads		20240521074738 e58fa6fb ada.text_io.integer_io%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D ring_generic.ads	20260429010309 6813b0b2 ring_generic%s
+D ring_generic.adb	20260429010650 15d4083c ring_generic%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
+D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
+G a e
+G c Z s b [ring_generic standard 4 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 16|1r6 129r9
+X 3 a-inteio.ads
+18K13*Integer_Text_IO[11|46] 16|1w10 129r13
+X 11 a-tiinio.ads
+60U14*Get 16|129s29[3|18]
+X 15 ring_generic.ads
+2i5 Modulo{positive} 16|9r27 9r41 9r57 24r28 47r25 66r39 67r39
+4k9*Ring_Generic 2z5 36E10 40l5 40e17 16|3b14 133l5 133t17
+6R10*Ring 9r43 10r25 13r26 13r39 14r26 14r39 15r26 15r39 16r26 16r39 19r37
+. 19r47 20r37 20r47 21r37 21r47 22r37 22r47 25r26 26r26 27r26 28r27 29r27
+. 32r28 33r28 36c10 38e15 16|12r43 17r25 53r26 53r39 58r26 58r39 63r26 63r39
+. 70r26 70r39 76r37 76r47 81r37 81r47 86r37 86r47 91r37 91r47 96r26 101r26
+. 106r26 111r27 116r27 121r28 126r28
+9V14*FromInt{6R10} 9>23 16|12b14 15t8 130s14
+9i23 V{integer} 16|12b23 14r39
+10V14*ToInt{integer} 10>21 16|17b14 20t8
+10r21 R{6R10} 16|17b21 19r24
+13V15*"+"{6R10} 13>19 13>22 16|53b15 56t8 78s16
+13r19 A{6R10} 16|53b19 55r36
+13r22 B{6R10} 16|53b22 55r46
+14V15*"-"{6R10} 14>19 14>22 16|58b15 61t8 83s16
+14r19 A{6R10} 16|58b19 60r36
+14r22 B{6R10} 16|58b22 60r46
+15V15*"*"{6R10} 15>19 15>22 16|63b15 68t8 88s16
+15r19 A{6R10} 16|63b19 66r24
+15r22 B{6R10} 16|63b22 67r24
+16V15*"/"{6R10} 16>19 16>22 16|70b15 74t8 93s16
+16r19 A{6R10} 16|70b19 73r36
+16r22 B{6R10} 16|70b22 71r32
+19U15*AddAssign 19=26 19>43 16|76b15 79t8
+19r26 A{6R10} 16|76b26 78m9 78r14
+19r43 B{6R10} 16|76b43 78r18
+20U15*SubAssign 20=26 20>43 16|81b15 84t8
+20r26 A{6R10} 16|81b26 83m9 83r14
+20r43 B{6R10} 16|81b43 83r18
+21U15*MulAssign 21=26 21>43 16|86b15 89t8
+21r26 A{6R10} 16|86b26 88m9 88r14
+21r43 B{6R10} 16|86b43 88r18
+22U15*DivAssign 22=26 22>43 16|91b15 94t8
+22r26 A{6R10} 16|91b26 93m9 93r14
+22r43 B{6R10} 16|91b43 93r18
+25V15*"="{boolean} 25>19 25>22 16|96b15 99t8
+25r19 A{6R10} 16|96b19 98r16
+25r22 B{6R10} 16|96b22 98r26
+26V15*"<"{boolean} 26>19 26>22 16|101b15 104t8
+26r19 A{6R10} 16|101b19 103r16
+26r22 B{6R10} 16|101b22 103r26
+27V15*">"{boolean} 27>19 27>22 16|106b15 109t8
+27r19 A{6R10} 16|106b19 108r16
+27r22 B{6R10} 16|106b22 108r26
+28V15*"<="{boolean} 28>20 28>23 16|111b15 114t8
+28r20 A{6R10} 16|111b20 113r16
+28r23 B{6R10} 16|111b23 113r27
+29V15*">="{boolean} 29>20 29>23 16|116b15 119t8
+29r20 A{6R10} 16|116b20 118r16
+29r23 B{6R10} 16|116b23 118r27
+32V14*ToString{string} 32>24 16|121b14 124t8
+32r24 R{6R10} 16|121b24 123r38
+33U15*Get 33<20 16|126b15 131t8
+33r20 R{6R10} 16|126b20 130m9
+37i9 Value{long_long_integer} 16|14m17 19r26 55m17 55r38 55r48 60m17 60r38
+. 60r48 65m17 66r26 67r26 71r34 73m17 73r38 98r18 98r28 103r18 103r28 108r18
+. 108r28 113r18 113r29 118r18 118r29 123r40
+X 16 ring_generic.adb
+5I13 LL{long_long_integer} 7r29 7r40 9r24 9r38 9r54 14r36 22r30 22r41 23r19
+. 24r19 24r25 25r19 47r22 66r36 67r36 71r15
+7V14 Normalize{5I13} 7b14 7>25 10t8 14s26 55s26 60s26 66s13 73s26
+7i25 V{5I13} 9r18
+22V14 ModInverse{5I13} 22b14 22>26 51t8 71s21
+22i26 A{5I13} 28r17
+23i9 T{5I13} 33r21 34m13 46r12 47m13 47r18 50r16
+23i12 NewT{5I13} 27m9 33r29 34r18 35m13
+24i9 R{5I13} 31r18 37r21 38m13 42r12
+24i12 NewR{5I13} 28m9 30r15 31r22 37r29 38r18 39m13
+25i9 Q{5I13} 31m13 33r25 37r25
+25i12 Temp{5I13} 33m13 35r21 37m13 39r21
+71i9 Inv{5I13} 73r46
+127i9 V{integer} 129m33 130r22
+

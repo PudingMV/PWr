@@ -1,0 +1,164 @@
+V "GNAT Lib v13"
+M P W=b
+P SS ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U main%b		main.adb		aa9364df NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.discrete_random%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W dhsetup_generic%s	dhsetup_generic.adb	dhsetup_generic.ali
+W ring_generic%s	ring_generic.adb	ring_generic.ali
+W system%s		system.ads		system.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W user_generic%s	user_generic.adb	user_generic.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-assert.ads		20240521074737 ba465f5c ada.assertions%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-inteio.ads		20240521074738 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nubinu.ads		20240521074738 93f1f3d1 ada.numerics.big_numbers%s
+D a-nbnbig.ads		20240521074738 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-nudira.ads		20240521074738 5984dff3 ada.numerics.discrete_random%s
+D a-nudira.adb		20240521074738 0bfd6ec4 ada.numerics.discrete_random%b
+D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-tiinio.ads		20240521074738 e58fa6fb ada.text_io.integer_io%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D dhsetup_generic.ads	20260429005952 ba9fdacd dhsetup_generic%s
+D dhsetup_generic.adb	20260429010717 071c5413 dhsetup_generic%b
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D main.adb		20260429010527 f8444f0c main%b
+D ring_generic.ads	20260429010309 6813b0b2 ring_generic%s
+D ring_generic.adb	20260429010650 15d4083c ring_generic%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
+D s-casuti.ads		20240521074738 cf13d755 system.case_util%s
+D s-conca2.ads		20240521074738 b5fb73f7 system.concat_2%s
+D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-imagei.ads		20240521074738 c707dfd0 system.image_i%s
+D s-imageu.ads		20240521074738 631c6ed0 system.image_u%s
+D s-imgint.ads		20240521074738 d4a52a9b system.img_int%s
+D s-imguns.ads		20240521074738 7867236f system.img_uns%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-rannum.ads		20240521074738 95815eca system.random_numbers%s
+D s-rannum.adb		20240521074738 0f2dcb9a system.random_numbers%b
+D s-ransee.ads		20240521074738 01a57b33 system.random_seed%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
+D s-valint.ads		20240521074738 1f610d7a system.val_int%s
+D s-valuns.ads		20240521074738 e8a1f424 system.val_uns%s
+D s-valuti.ads		20240521074738 fcd603d8 system.val_util%s
+D s-valuei.ads		20240521074738 11081e09 system.value_i%s
+D s-vaispe.ads		20240521074738 44130d39 system.value_i_spec%s
+D s-valueu.ads		20240521074738 18770347 system.value_u%s
+D s-vauspe.ads		20240521074738 a67b2f28 system.value_u_spec%s
+D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
+D s-widuns.ads		20240521074738 866a5800 system.wid_uns%s
+D s-widthu.ads		20240521074738 b32f15e2 system.width_u%s
+D user_generic.ads	20260429010443 dc7720ff user_generic%s
+D user_generic.adb	20260429010509 47bc6249 user_generic%b
+G a e
+G c Z b b [main standard 7 11 none]
+G r i none [main standard 7 11 none] [ring_generic standard 4 9 none]
+G r i none [main standard 7 11 none] [dhsetup_generic standard 10 9 none]
+G r i none [main standard 7 11 none] [user_generic standard 13 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 23|1r6 1r23
+X 10 a-nudira.adb
+53V16 Random[39|86]{integer} 40|402b13[61|6[23|18]]
+65V16 Random[39|86]{integer} 40|402b13[20|61[23|11]]
+X 16 a-textio.ads
+58K13*Text_IO 787e16 23|1w10 1r27
+566U14*Put_Line 23|37s5 39s5 40s5 42s5 47s5 48s5 53s5 54s5 61s5 62s5 63s5
+. 66s9 68s9
+X 19 dhsetup_generic.ads
+2+10 T 23|12r8
+4V20 "*"{2+10} 23|13r9
+5V19 FromInt{2+10} 23|14r8
+6V19 ToInt{integer} 23|15r8
+8i5 Modulo{positive} 23|16r8
+10k9*DHSetup_Generic 18e20 23|4w6 11r23
+12V14 Power{24|6R10[23|9]} 23|24r20[11]
+13V14 GetGenerator{24|6R10[23|9]} 23|25r27[11] 42s44[11]
+X 21 interfac.ads
+80M9*Unsigned_32
+83M9*Unsigned_64
+X 23 main.adb
+7U11*Main 7b11 71l5 71t9
+9K13 R[24|4] 12r13 13r15 14r19 15r17 19r13 20r15 21r15 22r19 23r17 30r25
+. 42r30 47r37 48r37 53r37 54r37 56r10 61r30 62r30 63r30 65r8
+11K13 DH[19|10] 24r17 25r24 42r41
+18K13 U[60|13] 28r18 34r14 35r12 39r47 40r47 44r10 45r10 50r5 51r5 53r48
+. 54r48 58r12 59r12
+28r5 Alice{60|15R10[18]} 34m5 39r59 44r25 50m14 50r14 53r57 58r22
+28r12 Bob{60|15R10[18]} 35m5 40r59 45r25 51m14 51r14 54r57 59r22
+30r5 A{24|6R10[9]} 44m5 47r48 51r19
+30r8 B{24|6R10[9]} 45m5 48r48 50r21
+30r11 M{24|6R10[9]} 56m5 58r29 61r41 65r14
+30r14 Enc{24|6R10[9]} 58m5 59r27 62r41
+30r19 Dec{24|6R10[9]} 59m5 63r41 65r17
+X 24 ring_generic.ads
+4k9*Ring_Generic 23|3w6 9r22 24|40e17
+6R10 Ring 23|12r15[9] 19r15[9] 30r27[9]
+9V14 FromInt{6R10[23|9]} 23|14r21[9] 22r21[9] 56s12[9]
+10V14 ToInt{integer} 23|15r19[9] 23r19[9]
+15V15 "*"{6R10[23|9]} 23|13r18[9] 20r18[9]
+16V15 "/"{6R10[23|9]} 23|21r18[9]
+25V15 "="{boolean} 23|65s11[9]
+32V14 ToString{string} 23|42s32[9] 47s39[9] 48s39[9] 53s39[9] 54s39[9] 61s32[9]
+. 62s32[9] 63s32[9]
+X 39 s-rannum.ads
+77V13*Random{21|80M9} 40|224i21
+78V13*Random{21|83M9} 40|224i21
+X 60 user_generic.ads
+2+10 T 23|19r8
+4V20 "*"{2+10} 23|20r9
+5V20 "/"{2+10} 23|21r9
+6V19 FromInt{2+10} 23|22r8
+7V19 ToInt{integer} 23|23r8
+8V19 Power{2+10} 23|24r8
+9V19 GetGenerator{2+10} 23|25r8
+11i5 Modulo{positive} 23|26r8
+13k9*User_Generic 23|5w6 18r22 60|35e17
+15R10 User 23|28r20[18]
+17V14 Create{15R10[23|18]} 23|34s16[18] 35s14[18]
+19V14 GetPublicKey{24|6R10[23|9]} 23|44s12[18] 45s12[18]
+20U15 SetKey 23|50s7[18] 51s7[18]
+22V14 Encrypt{24|6R10[23|9]} 23|58s14[18]
+23V14 Decrypt{24|6R10[23|9]} 23|59s14[18]
+25V14 GetSecret{natural} 23|39s49[18] 40s49[18]
+26V14 GetKey{24|6R10[23|9]} 23|53s50[18] 54s50[18]
+

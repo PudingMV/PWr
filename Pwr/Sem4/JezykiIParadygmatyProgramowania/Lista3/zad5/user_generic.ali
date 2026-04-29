@@ -1,0 +1,102 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+
+U user_generic%b	user_generic.adb	c24f9d45 NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W system%s		system.ads		system.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
+
+U user_generic%s	user_generic.ads	dc7720ff BN EE NE OO PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nudira.ads		20240521074738 5984dff3 ada.numerics.discrete_random%s
+D a-nudira.adb		20240521074738 0bfd6ec4 ada.numerics.discrete_random%b
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D system.ads		20240521074738 426dafb8 system%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-rannum.ads		20240521074738 95815eca system.random_numbers%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D user_generic.ads	20260429010443 dc7720ff user_generic%s
+D user_generic.adb	20260429010509 47bc6249 user_generic%b
+G a e
+G c Z s b [user_generic standard 13 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 24|1r6 6r25
+X 3 a-numeri.ads
+16K13*Numerics 35e17 24|1r10 6r29
+X 4 a-nudira.ads
+44k22*Discrete_Random 81e33 24|1w19 6r38
+50R9 Generator<15|65R9> 24|7r16[6]
+52V13 Random{integer} 24|11s29[6]
+61U14 Reset<15|103p14> 24|17s14[6]
+X 23 user_generic.ads
+2+10 T 4r31 4r41 5r31 5r41 6r48 7r30 8r30 8r53 9r39 19r45 20r44 22r37 22r47
+. 23r37 23r47 26r39 31r18 24|22r45 27r44 33r37 33r47 42r37 42r47 56r38
+4V20 "*"{2+10} 4>24 4>27 24|39s18
+4*24 A{2+10}
+4*27 B{2+10}
+5V20 "/"{2+10} 5>24 5>27 24|48s18
+5*24 A{2+10}
+5*27 B{2+10}
+6V19 FromInt{2+10} 6>28
+6i28 V{integer}
+7V19 ToInt{integer} 7>26
+7*26 A{2+10}
+8V19 Power{2+10} 8>26 8>33 24|24s16 29s18
+8*26 A{2+10}
+8i33 B{natural}
+9V19 GetGenerator{2+10} 24|24s22
+11i5 Modulo{positive} 24|5r46
+13k9*User_Generic 2z10 4z20 5z20 6z19 7z19 8z19 9z19 11z5 29E10 35l5 35e17
+. 24|3b14 61l5 61t17
+15R10*User 17r28 19r32 20r34 22r27 23r27 25r29 26r26 29c10 33e15 24|14r28
+. 15r13 22r32 27r34 33r27 42r27 51r29 56r25
+17V14*Create{15R10} 24|14b14 20t8
+19V14*GetPublicKey{2+10} 19>28 24|22b14 25t8
+19r28 U{15R10} 24|22b28 24r36
+20U15*SetKey 20=23 20>40 24|27b15 31t8
+20r23 U{15R10} 24|27b23 29m9 29r27 30m9
+20*40 A{2+10} 24|27b40 29r24
+22V14*Encrypt{2+10} 22>23 22>33 24|33b14 40t8
+22r23 U{15R10} 24|33b23 35r16 39r20
+22*33 M{2+10} 24|33b33 39r16
+23V14*Decrypt{2+10} 23>23 23>33 24|42b14 49t8
+23r23 U{15R10} 24|42b23 44r16 48r20
+23*33 C{2+10} 24|42b33 48r16
+25V14*GetSecret{natural} 25>25 24|51b14 54t7
+25r25 U{15R10} 24|51b25 53r14
+26V14*GetKey{2+10} 26>22 24|56b13 59t7
+26r22 U{15R10} 24|56b21 58r14
+30i9 Secret{natural} 24|18m11 24r38 29r29 53r16
+31*9 Key{2+10} 24|29m11 39r22 48r22 58r16
+32b9 KeySet{boolean} 24|30m11 35r18 44r18
+X 24 user_generic.adb
+5I13 Range_Type{integer} 6r54
+6K13 Rand[4|44] 7r11 11r24 17r9
+7r5 Gen{4|50R9[6]} 11r36 17r20
+9V14 RandomSecret{natural} 9b14 12t8 18s21
+15r9 U{23|15R10} 18m9 19r16
+

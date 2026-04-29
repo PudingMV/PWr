@@ -1,0 +1,73 @@
+V "GNAT Lib v13"
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+
+U rsa_generic%b		rsa_generic.adb		eed85652 NE OO PK GE IU
+
+U rsa_generic%s		rsa_generic.ads		d9bfb9b1 BN EE NE OO PK GE
+W ring_generic%s	ring_generic.adb	ring_generic.ali
+
+D ring_generic.ads	20260429005940 d6ddd0fb ring_generic%s
+D rsa_generic.ads	20260428224655 0f62694a rsa_generic%s
+D rsa_generic.adb	20260428225122 e1ba3f18 rsa_generic%b
+D system.ads		20240521074738 426dafb8 system%s
+G a e
+G c Z s b [rsa_generic standard 4 9 none]
+X 1 ring_generic.ads
+3k9*Ring_Generic 40e17 2|1w6 3r27
+5R10 Ring 2|13r40[3] 13r55[3] 14r40[3] 14r55[3] 3|59r32[2|3] 59r62[2|3] 60r20[2|3]
+. 61r20[2|3] 95r40[2|3] 95r55[2|3] 100r40[2|3] 100r55[2|3]
+8V14 FromInt{5R10[2|3]} 3|60s30[2|3]
+14V15 "*"{5R10[2|3]} 3|66s34[2|3] 69s20[2|3]
+X 2 rsa_generic.ads
+3K18 R[1|3] 13r38 13r53 14r38 14r53 3|3r9 59r30 59r60 60r18 60r28 61r18 95r38
+. 95r53 100r38 100r53
+4k9*RSA_Generic 3z18 17E10 24l5 24e16 3|1b14 105l5 105t16
+6R10*RSA 8r34 10r31 11r34 13r29 14r29 17c10 22e15 3|76r34 85r31 90r34 95r29
+. 100r29
+8U15*Init 8=21 8>39 8>42 3|76b15 83t8
+8r21 Obj{6R10} 3|76b21 78m9 79m9 81m9 81r31 82m9 82r26 82r33
+8i39 P{positive} 3|76b39 78r20 79r21
+8i42 Q{positive} 3|76b42 78r24 79r31
+10V14*GetModulo{positive} 10>25 3|85b14 88t8
+10r25 Obj{6R10} 3|85b25 87r16
+11V14*GetPublicKey{integer} 11>28 3|90b14 93t8
+11r28 Obj{6R10} 3|90b28 92r16
+13V14*Encrypt{1|5R10[3]} 13>23 13>34 3|95b14 98t8
+13r23 Obj{6R10} 3|95b23 97r27
+13r34 M{1|5R10[3]} 3|95b34 97r24
+14V14*Decrypt{1|5R10[3]} 14>23 14>34 3|100b14 103t8
+14r23 Obj{6R10} 3|100b23 102r27
+14r34 S{1|5R10[3]} 3|100b34 102r24
+18i9 N{positive} 3|78m13 87r20
+19i9 Phi{positive} 3|79m13 81r35 82r37
+20i9 E{positive} 3|81m13 82r30 92r20 97r31
+21i9 D{positive} 3|82m13 102r31
+X 3 rsa_generic.adb
+5V14 GCD{natural} 5b14 5>19 5>22 16l9 16t12 21s16
+5i19 A{natural} 6r24
+5i22 B{natural} 7r24
+6i9 X{natural} 12r18 13m13 15r16
+7i9 Y{natural} 10r15 11r18 12m13 12r24
+8i9 T{natural} 11m13 13r18
+18V14 Find_Coprime{positive} 18b14 18>28 26t8 81s18
+18i28 Phi{positive} 20r23 21r23
+20i13 I{integer} 21r20 22r24
+28V14 Mod_Inv{integer} 28b14 28>23 28>26 57t8 82s18
+28i23 A{integer} 34r17
+28i26 M{integer} 30r30 53r22
+29i9 T{integer} 39r20 40m13 52r12 53m13 53r18 56r16
+29i12 NewT{integer} 33m9 39r28 40r18 41m13
+30i9 R{integer} 37r18 43r20 44m13 48r12
+30i12 NewR{integer} 34m9 36r15 37r22 43r28 44r18 45m13
+31i9 Q{integer} 37m13 39r24 43r24
+31i12 Tmp{integer} 39m13 41r21 43m13 45r21
+59V14 Mod_Pow{1|5R10[2|3]} 59b14 59>23 59>38 74t8 97s16 102s16
+59r23 Base{1|5R10[2|3]} 61r28
+59i38 Exp{natural} 62r29
+60r9 Result{1|5R10[2|3]} 66m17 66r27 73r16
+61r9 B{1|5R10[2|3]} 66r36 69m13 69r18 69r22
+62i9 E{natural} 64r15 65r17 70m13 70r18
+

@@ -1,0 +1,108 @@
+V "GNAT Lib v13"
+M P W=b
+P SS ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+
+U main%b		main.adb		d88335e5 NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ring_generic%s	ring_generic.adb	ring_generic.ali
+W rsa_generic%s		rsa_generic.adb		rsa_generic.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+D ada.ads		20240521074738 76789da1 ada%s
+D a-assert.ads		20240521074737 ba465f5c ada.assertions%s
+D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
+D a-inteio.ads		20240521074738 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
+D a-nubinu.ads		20240521074738 93f1f3d1 ada.numerics.big_numbers%s
+D a-nbnbig.ads		20240521074738 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
+D a-string.ads		20240521074738 90ac6797 ada.strings%s
+D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
+D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-tiinio.ads		20240521074738 e58fa6fb ada.text_io.integer_io%s
+D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240521074738 15f799c2 interfaces%s
+D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D main.adb		20260428224813 5d10ed07 main%b
+D ring_generic.ads	20260429005940 d6ddd0fb ring_generic%s
+D ring_generic.adb	20260428224144 a5373f23 ring_generic%b
+D rsa_generic.ads	20260428224655 0f62694a rsa_generic%s
+D rsa_generic.adb	20260428225122 e1ba3f18 rsa_generic%b
+D system.ads		20240521074738 426dafb8 system%s
+D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
+D s-casuti.ads		20240521074738 cf13d755 system.case_util%s
+D s-conca2.ads		20240521074738 b5fb73f7 system.concat_2%s
+D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
+D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-imagei.ads		20240521074738 c707dfd0 system.image_i%s
+D s-imgint.ads		20240521074738 d4a52a9b system.img_int%s
+D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
+D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240521074738 df77073e system.soft_links%s
+D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
+D s-valint.ads		20240521074738 1f610d7a system.val_int%s
+D s-valuns.ads		20240521074738 e8a1f424 system.val_uns%s
+D s-valuti.ads		20240521074738 fcd603d8 system.val_util%s
+D s-valuei.ads		20240521074738 11081e09 system.value_i%s
+D s-vaispe.ads		20240521074738 44130d39 system.value_i_spec%s
+D s-valueu.ads		20240521074738 18770347 system.value_u%s
+D s-vauspe.ads		20240521074738 a67b2f28 system.value_u_spec%s
+D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
+D s-widuns.ads		20240521074738 866a5800 system.wid_uns%s
+D s-widthu.ads		20240521074738 b32f15e2 system.width_u%s
+G a e
+G c Z b b [main standard 6 11 none]
+G r i none [main standard 6 11 none] [ring_generic standard 3 9 none]
+G r i none [main standard 6 11 none] [rsa_generic standard 4 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 19|1r6 1r23
+X 14 a-textio.ads
+58K13*Text_IO 787e16 19|1w10 1r27
+566U14*Put_Line 19|24s5 25s5 27s5 28s5 29s5 32s9 34s9
+X 19 main.adb
+6U11*Main 6b11 37l5 37t9
+8K13 My_Ring[20|3] 9r9 10r40 14r15 19r10 27r28 28r30 29r30
+10K13 My_RSA[22|4] 12r9 17r5 21r10 22r10 24r41 25r45
+12r5 R{22|6R10[10]} 17m17 17r17 21r25 22r25 24r58 25r65
+14r5 M{20|5R10[8]} 19m5 21r28 27r45 31r8
+14r8 C{20|5R10[8]} 21m5 22r28 28r47
+14r11 D{20|5R10[8]} 22m5 29r47 31r12
+X 20 ring_generic.ads
+3k9*Ring_Generic 19|3w6 8r28 20|40e17
+5R10 Ring 19|14r23[8]
+8V14 FromInt{5R10[19|8]} 19|19s18[8]
+24V15 "="{boolean} 19|31s10[8]
+32V14 ToString{string} 19|27s36[8] 28s38[8] 29s38[8]
+X 22 rsa_generic.ads
+4k9*RSA_Generic 19|4w6 10r28 22|24e16
+6R10 RSA 19|12r16[10]
+8U15 Init 19|17s12[10]
+10V14 GetModulo{positive} 19|24s48[10]
+11V14 GetPublicKey{integer} 19|25s52[10]
+13V14 Encrypt{20|5R10[19|8]} 19|21s17[10]
+14V14 Decrypt{20|5R10[19|8]} 19|22s17[10]
+
