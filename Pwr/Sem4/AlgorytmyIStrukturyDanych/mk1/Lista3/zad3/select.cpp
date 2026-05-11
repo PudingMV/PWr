@@ -29,6 +29,7 @@ void insertionSort(vector<int>& A,
             st.comparisons++;
 
             if (A[j] > key) {
+                st.swaps++;
                 A[j + 1] = A[j];
                 j--;
             }
@@ -302,6 +303,10 @@ int main(int argc, char* argv[]) {
 
     cout << "Time(us): "
          << duration.count()
+         << "\n";
+
+    cout << "Swaps: "
+         << st.swaps
          << "\n";
 
     return 0;

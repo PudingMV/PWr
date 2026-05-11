@@ -5,7 +5,7 @@ SELECT="./select"
 
 OUT="group_results.csv"
 
-echo "group,n,comparisons,time" > $OUT
+echo "group,n,comparisons,swaps,time" > $OUT
 
 M=50
 
@@ -27,11 +27,25 @@ do
                 echo "$data" | $SELECT $g
             )
 
-            comps=$(echo "$result" | grep "Comparisons" | awk '{print $2}')
+            comps=$(
+                echo "$result" |
+                grep "Comparisons" |
+                awk '{print $2}'
+            )
 
-            time=$(echo "$result" | grep "Time" | awk '{print $2}')
+            swaps=$(
+                echo "$result" |
+                grep "Swaps" |
+                awk '{print $2}'
+            )
 
-            echo "$g,$n,$comps,$time" >> $OUT
+            time=$(
+                echo "$result" |
+                grep "Time" |
+                awk '{print $2}'
+            )
+
+            echo "$g,$n,$comps,$swaps,$time" >> $OUT
 
         done
     done
