@@ -5,138 +5,195 @@ using namespace std;
 
 struct Stats {
     long long comparisons = 0;
+    long long swaps = 0;
 };
 
-void printVec(const vector<int>& A) {
-    for (int x : A)
-        cout << x << " ";
+void printVec(const vector<int>& A, int l, int r) {
+    for (int i = l; i <= r; i++)
+        cout << A[i] << " ";
     cout << "\n";
 }
 
-int selectAlgo(vector<int> A,
-    int k,
-    int groupSize,
-    Stats& st,
-    bool verbose);
+void insertionSort(vector<int>& A,
+                   int l,
+                   int r,
+                   Stats& st) {
 
-int medianOfMedians(vector<int> A,
+    for (int i = l + 1; i <= r; i++) {
+
+        int key = A[i];
+        int j = i - 1;
+
+        while (j >= l) {
+
+            st.comparisons++;
+
+            if (A[j] > key) {
+                A[j + 1] = A[j];
+                j--;
+            }
+            else {
+                break;
+            }
+        }
+
+        A[j + 1] = key;
+    }
+}
+
+int selectAlgo(vector<int>& A,
+               int l,
+               int r,
+               int k,
+               int groupSize,
+               Stats& st,
+               bool verbose);
+
+
+int medianOfMedians(vector<int>& A,
+                    int l,
+                    int r,
                     int groupSize,
                     Stats& st,
                     bool verbose) {
+
+    int n = r - l + 1;
 
     if (verbose) {
         cout << "\nBuilding medians...\n";
     }
 
-    if (A.size() <= (size_t)groupSize) {
-        sort(A.begin(), A.end(),
-    [&](int a, int b) {
-        st.comparisons++;
-        return a < b;
-    });
-        return A[A.size() / 2];
+    if (n <= groupSize) {
+
+        insertionSort(A, l, r, st);
+
+        return A[l + n / 2];
     }
 
-    vector<int> medians;
+    int medianIndex = l;
 
-    for (size_t i = 0; i < A.size(); i += groupSize) {
+    for (int i = l; i <= r; i += groupSize) {
 
-        vector<int> group;
+        int subRight = min(i + groupSize - 1, r);
 
-        for (size_t j = i;
-             j < i + groupSize && j < A.size();
-             j++) {
+        insertionSort(A, i, subRight, st);
 
-            group.push_back(A[j]);
-        }
+        int med = A[i + (subRight - i) / 2];
 
-        sort(group.begin(), group.end(),
-    [&](int a, int b) {
-        st.comparisons++;
-        return a < b;
-    });
+        swap(A[medianIndex], A[i + (subRight - i) / 2]);
 
-        int med = group[group.size() / 2];
-
-        medians.push_back(med);
+        medianIndex++;
 
         if (verbose) {
+
             cout << "Group: ";
-            printVec(group);
+
+            printVec(A, i, subRight);
 
             cout << "Median: " << med << "\n";
         }
     }
 
     if (verbose) {
-        cout << "Medians: ";
-        printVec(medians);
+
+        cout << "Collected medians: ";
+
+        printVec(A, l, medianIndex - 1);
     }
 
+    int mid =
+        l + (medianIndex - l - 1) / 2;
+
     return selectAlgo(
-        medians,
-        medians.size() / 2,
+        A,
+        l,
+        medianIndex - 1,
+        mid,
         groupSize,
         st,
         verbose
     );
 }
 
-int selectAlgo(vector<int> A,
+int selectAlgo(vector<int>& A,
+               int l,
+               int r,
                int k,
                int groupSize,
                Stats& st,
                bool verbose) {
 
-    if (A.size() == 1)
-        return A[0];
+    if (l == r)
+        return A[l];
 
     int pivot = medianOfMedians(
         A,
+        l,
+        r,
         groupSize,
         st,
         verbose
     );
 
     if (verbose) {
-        cout << "\nPivot (MoM): " << pivot << "\n";
+        cout << "\nPivot (MoM): "
+             << pivot
+             << "\n";
     }
 
-    vector<int> L, E, R;
+    int lt = l;
+    int gt = r;
+    int i = l;
 
-    for (int x : A) {
+    while (i <= gt) {
 
         st.comparisons++;
 
-        if (x < pivot)
-            L.push_back(x);
+        if (A[i] < pivot) {
+            st.swaps++;
 
+            swap(A[i], A[lt]);
 
+            i++;
+            lt++;
+        }
         else {
+
             st.comparisons++;
-            
-            if (x > pivot)
-                R.push_back(x);
-            else
-                E.push_back(x);
+
+            if (A[i] > pivot) {
+
+                st.swaps++;
+
+                swap(A[i], A[gt]);
+
+                gt--;
             }
+            else {
+
+                i++;
+            }
+        }
     }
 
     if (verbose) {
+
         cout << "L: ";
-        printVec(L);
+        printVec(A, l, lt - 1);
 
         cout << "E: ";
-        printVec(E);
+        printVec(A, lt, gt);
 
         cout << "R: ";
-        printVec(R);
+        printVec(A, gt + 1, r);
     }
 
-    if (k < (int)L.size()) {
+    if (k < lt) {
 
         return selectAlgo(
-            L,
+            A,
+            l,
+            lt - 1,
             k,
             groupSize,
             st,
@@ -144,7 +201,7 @@ int selectAlgo(vector<int> A,
         );
     }
 
-    else if (k < (int)L.size() + (int)E.size()) {
+    else if (k <= gt) {
 
         return pivot;
     }
@@ -152,8 +209,10 @@ int selectAlgo(vector<int> A,
     else {
 
         return selectAlgo(
-            R,
-            k - L.size() - E.size(),
+            A,
+            gt + 1,
+            r,
+            k,
             groupSize,
             st,
             verbose
@@ -187,43 +246,55 @@ int main(int argc, char* argv[]) {
     Stats st;
 
     if (verbose) {
+
         cout << "\n=== SELECT (Median of Medians) ===\n";
-        cout << "Group size: " << groupSize << "\n";
+
+        cout << "Group size: "
+             << groupSize
+             << "\n";
 
         cout << "Initial array: ";
-        printVec(orig);
+
+        printVec(A, 0, n - 1);
     }
 
-    auto start = chrono::high_resolution_clock::now();
+    auto start =
+        chrono::high_resolution_clock::now();
 
     int result = selectAlgo(
         A,
+        0,
+        n - 1,
         k - 1,
         groupSize,
         st,
         verbose
     );
 
-    auto end = chrono::high_resolution_clock::now();
+    auto end =
+        chrono::high_resolution_clock::now();
 
     auto duration =
-        chrono::duration_cast<chrono::microseconds>(
-            end - start
-        );
+        chrono::duration_cast<
+            chrono::microseconds
+        >(end - start);
 
     if (verbose) {
 
         cout << "\nFINAL ARRAY: ";
-        printVec(A);
+
+        printVec(A, 0, n - 1);
 
         cout << "SORTED CHECK: ";
 
         sort(orig.begin(), orig.end());
 
-        printVec(orig);
+        printVec(orig, 0, n - 1);
     }
 
-    cout << "k-th statistic: " << result << "\n";
+    cout << "k-th statistic: "
+         << result
+         << "\n";
 
     cout << "Comparisons: "
          << st.comparisons
