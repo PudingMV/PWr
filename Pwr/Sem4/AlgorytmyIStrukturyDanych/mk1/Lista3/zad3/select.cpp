@@ -14,10 +14,10 @@ void printVec(const vector<int>& A) {
 }
 
 int selectAlgo(vector<int> A,
-               int k,
-               int groupSize,
-               Stats& st,
-               bool verbose);
+    int k,
+    int groupSize,
+    Stats& st,
+    bool verbose);
 
 int medianOfMedians(vector<int> A,
                     int groupSize,
@@ -28,15 +28,17 @@ int medianOfMedians(vector<int> A,
         cout << "\nBuilding medians...\n";
     }
 
-    // baza rekurencji
     if (A.size() <= (size_t)groupSize) {
-        sort(A.begin(), A.end());
+        sort(A.begin(), A.end(),
+    [&](int a, int b) {
+        st.comparisons++;
+        return a < b;
+    });
         return A[A.size() / 2];
     }
 
     vector<int> medians;
 
-    // dzielenie na grupy po groupSize elementów
     for (size_t i = 0; i < A.size(); i += groupSize) {
 
         vector<int> group;
@@ -48,7 +50,11 @@ int medianOfMedians(vector<int> A,
             group.push_back(A[j]);
         }
 
-        sort(group.begin(), group.end());
+        sort(group.begin(), group.end(),
+    [&](int a, int b) {
+        st.comparisons++;
+        return a < b;
+    });
 
         int med = group[group.size() / 2];
 
@@ -67,7 +73,6 @@ int medianOfMedians(vector<int> A,
         printVec(medians);
     }
 
-    // rekurencyjny SELECT na medianach
     return selectAlgo(
         medians,
         medians.size() / 2,
@@ -106,11 +111,15 @@ int selectAlgo(vector<int> A,
         if (x < pivot)
             L.push_back(x);
 
-        else if (x > pivot)
-            R.push_back(x);
 
-        else
-            E.push_back(x);
+        else {
+            st.comparisons++;
+            
+            if (x > pivot)
+                R.push_back(x);
+            else
+                E.push_back(x);
+            }
     }
 
     if (verbose) {
@@ -123,8 +132,6 @@ int selectAlgo(vector<int> A,
         cout << "R: ";
         printVec(R);
     }
-
-    // wybór odpowiedniej części
 
     if (k < (int)L.size()) {
 
@@ -159,11 +166,8 @@ int main(int argc, char* argv[]) {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    // domyślnie klasyczne grupy po 5
     int groupSize = 5;
 
-    // możliwość podania z terminala:
-    // ./select 7
     if (argc >= 2)
         groupSize = atoi(argv[1]);
 

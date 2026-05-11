@@ -13,7 +13,7 @@ for g in 3 5 7 9 19 21
 do
     echo "Testing group size = $g"
 
-    for ((n=100; n<=50000; n+=100))
+    for ((n=100; n<=50000; n+=1000))
     do
 
         k=$((n/2))
