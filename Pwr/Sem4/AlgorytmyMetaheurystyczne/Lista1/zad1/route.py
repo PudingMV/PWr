@@ -66,11 +66,11 @@ def plot_route(coords, route, title="TSP Route"):
     y.append(y[0])
 
     plt.figure(figsize=(8, 6))
-    plt.plot(x, y, marker='o')
+    plt.plot(x, y)
 
     for node in route:
         cx, cy = coords[node]
-        plt.text(cx, cy, str(node), fontsize=8)
+        #plt.text(cx, cy, str(node), fontsize=8)
 
     plt.title(title)
     plt.grid(True)

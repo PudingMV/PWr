@@ -1,25 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 10;
+//////////////////////////////////////////////////////////////
+// FILES
+//////////////////////////////////////////////////////////////
 
-string fileNames[N] = {
-    "wi29.tsp", "dj38.tsp", "qa194.tsp", "uy734.tsp", "zi929.tsp",
-    "mu1979.tsp", "ca4663.tsp", "tz6117.tsp", "eg7146.tsp", "ei8246.tsp"
+const int FILES = 10;
+
+string fileNames[FILES] = {
+    "wi29.tsp",
+    "dj38.tsp",
+    "qa194.tsp",
+    "uy734.tsp",
+    "zi929.tsp",
+    "mu1979.tsp",
+    "ca4663.tsp",
+    "tz6117.tsp",
+    "eg7146.tsp",
+    "ei8246.tsp"
 };
 
-struct City {
+//////////////////////////////////////////////////////////////
+// CITY
+//////////////////////////////////////////////////////////////
+
+struct City
+{
     int id;
     double x, y;
 };
 
+//////////////////////////////////////////////////////////////
+// RANDOM
+//////////////////////////////////////////////////////////////
+
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+
+//////////////////////////////////////////////////////////////
+// READ TSPLIB FILE
+//////////////////////////////////////////////////////////////
 
 vector<City> readCountry(const string &fileName)
 {
     ifstream file(fileName);
+
+    if (!file.is_open())
+    {
+        cerr << "ERROR opening file: "
+             << fileName << "\n";
+
+        exit(1);
+    }
+
     vector<City> cities;
 
     string line;
+
     bool readCoords = false;
 
     while (getline(file, line))
@@ -33,13 +69,15 @@ vector<City> readCountry(const string &fileName)
         if (line.find("EOF") != string::npos)
             break;
 
-        if (readCoords)
-        {
-            stringstream ss(line);
-            City c;
-            char comma;
+        if (!readCoords)
+            continue;
 
-            ss >> c.id >> comma >> c.x >> comma >> c.y;
+        stringstream ss(line);
+
+        City c;
+
+        if (ss >> c.id >> c.x >> c.y)
+        {
             cities.push_back(c);
         }
     }
@@ -47,160 +85,269 @@ vector<City> readCountry(const string &fileName)
     return cities;
 }
 
+//////////////////////////////////////////////////////////////
+// DISTANCE
+//////////////////////////////////////////////////////////////
 
-int Distance(const City &a, const City &b)
+inline int Distance(
+    const vector<City> &cities,
+    int i,
+    int j)
 {
-    double dx = a.x - b.x;
-    double dy = a.y - b.y;
+    double dx = cities[i].x - cities[j].x;
+    double dy = cities[i].y - cities[j].y;
+
     return (int)round(sqrt(dx * dx + dy * dy));
 }
 
-vector<vector<int>> calculateDistances(const vector<City> &cities)
-{
-    int n = cities.size();
-    vector<vector<int>> dist(n, vector<int>(n));
+//////////////////////////////////////////////////////////////
+// ROUTE COST
+//////////////////////////////////////////////////////////////
 
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            dist[i][j] = Distance(cities[i], cities[j]);
-
-    return dist;
-}
-
-
-int calculateRoute(const vector<vector<int>> &dist,
-                   const vector<int> &perm)
+int calculateRoute(
+    const vector<City> &cities,
+    const vector<int> &perm)
 {
     int n = perm.size();
+
     int sum = 0;
 
-    for (int i = 1; i < n; i++)
-        sum += dist[perm[i - 1] - 1][perm[i] - 1];
+    for (int i = 0; i < n; i++)
+    {
+        int a = perm[i];
+        int b = perm[(i + 1) % n];
 
-    sum += dist[perm[n - 1] - 1][perm[0] - 1];
+        sum += Distance(cities, a, b);
+    }
 
     return sum;
 }
 
+//////////////////////////////////////////////////////////////
+// RANDOM PERMUTATION
+//////////////////////////////////////////////////////////////
 
 void randomPermutate(vector<int> &arr)
 {
-    for (int i = arr.size() - 1; i >= 1; i--)
-    {
-        int j = rand() % (i + 1);
-        swap(arr[i], arr[j]);
-    }
+    shuffle(arr.begin(), arr.end(), rng);
 }
 
+//////////////////////////////////////////////////////////////
+// LOCAL SEARCH (2-OPT)
+//////////////////////////////////////////////////////////////
 
 pair<int, vector<int>> LocalSearch(
-    const vector<vector<int>> &dist,
+    const vector<City> &cities,
     int &steps)
 {
-    int n = dist.size();
+    int n = cities.size();
 
     vector<int> current(n);
+
     for (int i = 0; i < n; i++)
-        current[i] = i + 1;
+    {
+        current[i] = i;
+    }
 
     randomPermutate(current);
 
-    int currentCost = calculateRoute(dist, current);
+    int currentCost =
+        calculateRoute(cities, current);
 
     steps = 0;
 
-    while (true)
-    {
-        vector<int> bestNeighbour = current;
-        int bestCost = currentCost;
+    bool improved = true;
 
-        bool improved = false;
+    while (improved)
+    {
+        improved = false;
 
         for (int i = 0; i < n - 1; i++)
         {
-            for (int j = i + 1; j < n; j++)
+            for (int j = i + 2; j < n; j++)
             {
-                vector<int> candidate = current;
+                // avoid breaking same edge
+                if (i == 0 && j == n - 1)
+                    continue;
 
-                reverse(candidate.begin() + i, candidate.begin() + j + 1);
+                int a = current[i];
+                int b = current[(i + 1) % n];
 
-                int cost = calculateRoute(dist, candidate);
+                int c = current[j];
+                int d = current[(j + 1) % n];
 
-                if (cost < bestCost)
+                int oldEdges =
+                    Distance(cities, a, b) +
+                    Distance(cities, c, d);
+
+                int newEdges =
+                    Distance(cities, a, c) +
+                    Distance(cities, b, d);
+
+                int delta = newEdges - oldEdges;
+
+                // improvement
+                if (delta < 0)
                 {
-                    bestCost = cost;
-                    bestNeighbour = candidate;
+                    reverse(
+                        current.begin() + i + 1,
+                        current.begin() + j + 1);
+
+                    currentCost += delta;
+
+                    steps++;
+
                     improved = true;
+
+                    goto next_iteration;
                 }
             }
         }
 
-        if (!improved)
-            break;
-
-        current = bestNeighbour;
-        currentCost = bestCost;
-        steps++;
+    next_iteration:;
     }
 
     return {currentCost, current};
 }
 
+//////////////////////////////////////////////////////////////
+// SOLVER
+//////////////////////////////////////////////////////////////
 
 void Solve()
 {
-    srand(time(0));
-
-    for (int f = 0; f < N; f++)
+    for (int f = 0; f < FILES; f++)
     {
         string path = "data/" + fileNames[f];
-        vector<City> cities = readCountry(path);
+
+        cout << "\n====================================\n";
+
+        cout << "Loading: "
+             << path
+             << "\n";
+
+        vector<City> cities =
+            readCountry(path);
 
         int n = cities.size();
-        auto dist = calculateDistances(cities);
 
-        double sum = 0;
-        double stepsSum = 0;
+        cout << "Cities: "
+             << n
+             << "\n";
+
+        //////////////////////////////////////////////////////////
+        // RUN COUNT
+        //////////////////////////////////////////////////////////
+
+        int RUNS =
+            (n > 1000 ? 100 : n);
+
+        //////////////////////////////////////////////////////////
+
+        double sumCost = 0;
+        double sumSteps = 0;
+
         int bestCost = INT_MAX;
+
         vector<int> bestPath;
 
-        for (int k = 0; k < n; k++)
+        //////////////////////////////////////////////////////////
+
+        for (int run = 0; run < RUNS; run++)
         {
             int steps = 0;
 
-            auto [cost, route] = LocalSearch(dist, steps);
+            auto [cost, route] =
+                LocalSearch(cities, steps);
 
-            sum += cost;
-            stepsSum += steps;
+            sumCost += cost;
+            sumSteps += steps;
 
             if (cost < bestCost)
             {
                 bestCost = cost;
                 bestPath = route;
             }
+
+            cout << "Run "
+                 << run + 1
+                 << "/"
+                 << RUNS
+                 << "\r";
+
+            cout.flush();
         }
 
-        ofstream out("task1_stats_" + fileNames[f]);
+        cout << "\n";
+
+        //////////////////////////////////////////////////////////
+        // OUTPUT FILE
+        //////////////////////////////////////////////////////////
+
+        string outName =
+            "task1_stats_" + fileNames[f];
+
+        ofstream out(outName);
 
         out << fileNames[f] << "\n";
-        out << "avg cost: " << sum / n << "\n";
-        out << "avg steps: " << stepsSum / n << "\n";
-        out << "best: " << bestCost << "\n\n";
 
-        cout << fileNames[f] << "\n";
-        cout << "avg cost: " << sum / n << "\n";
-        cout << "avg steps: " << stepsSum / n << "\n";
-        cout << "best: " << bestCost << "\n\n";
+        out << "cities: "
+            << n
+            << "\n";
+
+        out << "runs: "
+            << RUNS
+            << "\n";
+
+        out << "avg cost: "
+            << sumCost / RUNS
+            << "\n";
+
+        out << "avg steps: "
+            << sumSteps / RUNS
+            << "\n";
+
+        out << "best: "
+            << bestCost
+            << "\n\n";
+
+        out << "Best route:\n";
 
         for (int v : bestPath)
-            out << v << " ";
+        {
+            out << cities[v].id << " ";
+        }
+
         out << "\n";
 
+        //////////////////////////////////////////////////////////
+        // CONSOLE
+        //////////////////////////////////////////////////////////
+
+        cout << "Average cost: "
+             << sumCost / RUNS
+             << "\n";
+
+        cout << "Average steps: "
+             << sumSteps / RUNS
+             << "\n";
+
+        cout << "Best cost: "
+             << bestCost
+             << "\n";
     }
 }
 
+//////////////////////////////////////////////////////////////
+// MAIN
+//////////////////////////////////////////////////////////////
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     Solve();
+
+    return 0;
 }
