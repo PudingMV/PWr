@@ -1,137 +1,189 @@
 with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Ada.Numerics.Discrete_Random;
+with Ada.Command_Line; use Ada.Command_Line;
 
 procedure Philosophers is
 
-   N_Philosophers : constant Integer := 5;
-   Meals          : constant Integer := 5;
+    Default_Num_Philosophers : constant Integer := 5;
+    Default_Meals_Per_Philosopher : constant Integer := 5;
 
-   subtype Philosopher_Id is Integer range 1 .. N_Philosophers;
+    Num_Philosophers : Integer := Default_Num_Philosophers;
+    Meals_Per_Philosopher : Integer := Default_Meals_Per_Philosopher;
 
-   -----------------------------
-   -- Widelce
-   -----------------------------
-   type Fork_Array is array (Philosopher_Id) of Boolean;
+    subtype Delay_Range is Integer range 1 .. 3;
 
-   -----------------------------
-   -- MONITOR
-   -----------------------------
-   protected type Table is
-      entry Take_Forks (Id : Philosopher_Id);
-      procedure Put_Forks (Id : Philosopher_Id);
-   private
-      Fork_Free : Fork_Array := (others => True);
+    package Rand_Int is new Ada.Numerics.Discrete_Random(Delay_Range);
+    Gen : Rand_Int.Generator;
 
-      function Left  (Id : Philosopher_Id) return Philosopher_Id;
-      function Right (Id : Philosopher_Id) return Philosopher_Id;
-   end Table;
+    -- ===== STATYSTYKI GLOBALNE =====
+    type Stats_Array is array (Natural range <>) of Integer;
 
-   protected body Table is
+    protected Stats is
+        procedure Set(Id : Integer; Value : Integer);
+        function Get(Id : Integer) return Integer;
+    private
+        Data : Stats_Array(0 .. Default_Num_Philosophers - 1) := (others => 0);
+    end Stats;
 
-      function Left (Id : Philosopher_Id) return Philosopher_Id is
-      begin
-         return Id;
-      end;
+    protected body Stats is
+        procedure Set(Id : Integer; Value : Integer) is
+        begin
+            Data(Id) := Value;
+        end Set;
 
-      function Right (Id : Philosopher_Id) return Philosopher_Id is
-      begin
-         if Id = N_Philosophers then
-            return 1;
-         else
-            return Id + 1;
-         end if;
-      end;
+        function Get(Id : Integer) return Integer is
+        begin
+            return Data(Id);
+        end Get;
+    end Stats;
 
-      entry Take_Forks (Id : Philosopher_Id)
-        when Fork_Free(Left(Id)) and Fork_Free(Right(Id))
-      is
-      begin
-         Fork_Free(Left(Id))  := False;
-         Fork_Free(Right(Id)) := False;
+    -- ===== FORK =====
+    protected type Fork is
+        entry Pick_Up;
+        procedure Put_Down;
+    private
+        Taken : Boolean := False;
+    end Fork;
 
-         Put_Line("Filozof" & Integer'Image(Id) & " zabral widelce");
-      end Take_Forks;
+    protected body Fork is
+        entry Pick_Up when not Taken is
+        begin
+            Taken := True;
+        end Pick_Up;
 
-      procedure Put_Forks (Id : Philosopher_Id) is
-      begin
-         Fork_Free(Left(Id))  := True;
-         Fork_Free(Right(Id)) := True;
+        procedure Put_Down is
+        begin
+            Taken := False;
+        end Put_Down;
+    end Fork;
 
-         Put_Line("Filozof" & Integer'Image(Id) & " odlozyl widelce");
-      end Put_Forks;
+    -- ===== WAITER =====
+    protected type Waiter(Max : Integer) is
+        entry Request_Seat;
+        procedure Leave_Seat;
+    private
+        Sitting : Integer := 0;
+    end Waiter;
 
-   end Table;
+    protected body Waiter is
+        entry Request_Seat when Sitting < Max is
+        begin
+            Sitting := Sitting + 1;
+        end Request_Seat;
 
-   Shared_Table : Table;
+        procedure Leave_Seat is
+        begin
+            Sitting := Sitting - 1;
+        end Leave_Seat;
+    end Waiter;
 
-   -----------------------------
-   -- RNG
-   -----------------------------
-   package Rand is new Ada.Numerics.Discrete_Random(Integer);
+    Forks : array (0 .. Default_Num_Philosophers - 1) of aliased Fork;
+    Butler : Waiter(Default_Num_Philosophers - 1);
 
-   -----------------------------
-   -- TASK filozofa (BEZ ID DISCRIMINANT!)
-   -----------------------------
-   task type Philosopher;
+    task type Philosopher (Id : Integer; Left : access Fork; Right : access Fork);
+    type Philosopher_Access is access Philosopher;
 
-   task body Philosopher is
-      Id : Philosopher_Id;  -- <- ustawiane przez Init
-      G  : Rand.Generator;
-      Failed : Integer := 0;
-   begin
+    task body Philosopher is
+        Failed_Attempts : Integer := 0;
 
-      -- czekamy aż main przypisze ID
-      accept Start (My_Id : Philosopher_Id) do
-         Id := My_Id;
-      end Start;
+        procedure Think is
+        begin
+            Put_Line("Filozof" & Integer'Image(Id + 1) & " myśli nad sensem życia.");
+            delay Duration(Rand_Int.Random(Gen));
+        end Think;
 
-      Rand.Reset(G, Id);
+        procedure Eat(Meal_No : Integer) is
+        begin
+            Put_Line("Filozof" & Integer'Image(Id + 1) &
+                     " zjada crispy chicken bacon burgera numer" & Integer'Image(Meal_No));
+            delay Duration(Rand_Int.Random(Gen));
+        end Eat;
 
-      for Meal in 1 .. Meals loop
+    begin
+        for Meal in 1 .. Meals_Per_Philosopher loop
+            Think;
+            Put_Line("Filozof" & Integer'Image(Id + 1) & " jest głodny i próbuje zjeść.");
+            Butler.Request_Seat;
 
-         Put_Line("Filozof" & Integer'Image(Id) & " mysli");
+            select
+                Left.Pick_Up;
+            or
+                delay 0.1;
+                Failed_Attempts := Failed_Attempts + 1;
+                Put_Line("Filozof" & Integer'Image(Id + 1) &
+                         " jest za wolny i nie podniósł lewego widelca.");
+                Butler.Leave_Seat;
+                goto Continue_Loop;
+            end select;
 
-         delay Duration(Rand.Random(G) mod 3 + 1);
+            select
+                Right.Pick_Up;
+            or
+                delay 0.1;
+                Failed_Attempts := Failed_Attempts + 1;
+                Put_Line("Filozof" & Integer'Image(Id + 1) &
+                         " jest za wolny i nie podniówł prawego widelca.");
+                Left.Put_Down;
+                Butler.Leave_Seat;
+                goto Continue_Loop;
+            end select;
 
-         Put_Line("Filozof" & Integer'Image(Id) & " chce jesc");
+            Eat(Meal);
 
-         select
-            Shared_Table.Take_Forks(Id);
-         or
-            delay 0.2;
-            Failed := Failed + 1;
-            Shared_Table.Take_Forks(Id);
-         end select;
+            Left.Put_Down;
+            Right.Put_Down;
+            Butler.Leave_Seat;
 
-         Put_Line("Filozof" & Integer'Image(Id) & " je");
+            <<Continue_Loop>>
+            null;
+        end loop;
 
-         delay Duration(Rand.Random(G) mod 2 + 1);
+        Stats.Set(Id, Failed_Attempts);
+    end Philosopher;
 
-         Shared_Table.Put_Forks(Id);
-
-      end loop;
-
-      Put_Line("--------------------------------");
-      Put_Line("Filozof" & Integer'Image(Id) & " zakonczyl");
-      Put_Line("Nieudane proby: " & Integer'Image(Failed));
-      Put_Line("--------------------------------");
-
-   end Philosopher;
-
-   -----------------------------
-   -- TASKI
-   -----------------------------
-   type Philosopher_Array is array (Philosopher_Id) of Philosopher;
-
-   Philosophers : Philosopher_Array;
+    Philosophers : array(0 .. Default_Num_Philosophers - 1)
+      of Philosopher_Access;
 
 begin
+    Rand_Int.Reset(Gen);
 
-   Put_Line("Start symulacji filozofow");
+    if Argument_Count >= 2 then
+        Num_Philosophers := Integer'Value(Argument(1));
+        Meals_Per_Philosopher := Integer'Value(Argument(2));
+    end if;
 
-   -- inicjalizacja ID (POPRAWNE W ADA)
-   for I in Philosopher_Id loop
-      Philosophers(I).Start(I);
-   end loop;
+    for I in 0 .. Default_Num_Philosophers - 1 loop
+        Philosophers(I) :=
+          new Philosopher(
+            Id => I,
+            Left => Forks(I)'Access,
+            Right => Forks((I + 1) mod Default_Num_Philosophers)'Access
+          );
+    end loop;
+
+    declare
+        All_Done : Boolean;
+    begin
+        loop
+            All_Done := True;
+
+            for I in 0 .. Default_Num_Philosophers - 1 loop
+                if not Philosophers(I).all'Terminated then
+                    All_Done := False;
+                end if;
+            end loop;
+
+            exit when All_Done;
+            delay 0.1;
+        end loop;
+    end;
+
+    Put_Line("Statystyki");
+    for I in 0 .. Default_Num_Philosophers - 1 loop
+        Put_Line("Filozof" & Integer'Image(I + 1) &
+                 " tyle razy obszedł się smakiem =" &
+                 Integer'Image(Stats.Get(I)));
+    end loop;
 
 end Philosophers;

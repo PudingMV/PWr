@@ -3,53 +3,78 @@ M P W=b
 P SS ZX
 
 RN
+RV SIMPLE_BARRIERS
+RV NO_ALLOCATORS
 RV NO_DELAY
 RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
 RV NO_EXCEPTIONS
 RV NO_FIXED_POINT
 RV NO_IO
 RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_LOCAL_PROTECTED_OBJECTS
+RV NO_NESTED_FINALIZATION
+RV NO_PROTECTED_TYPES
 RV NO_RELATIVE_DELAY
 RV NO_SECONDARY_STACK
 RV NO_SELECT_STATEMENTS
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
 RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_ALLOCATORS
 RV NO_TASK_HIERARCHY
 RV NO_TASKING
 RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
-RV MAX_SELECT_ALTERNATIVES=2
-RV MAX_TASK_ENTRIES=2
+RV MAX_PROTECTED_ENTRIES=1
 RV MAX_TASKS=1+
+RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U dining_philosophers%b	dining_philosophers.adb	2f9ca79e NE OO SU
+U philosophers%b	philosophers.adb	e34b371a NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
 Z ada.real_time%s	a-reatim.adb		a-reatim.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
-Z system%s		system.ads		system.ali
+W system%s		system.ads		system.ali
 Z system.concat_3%s	s-conca3.adb		s-conca3.ali
 Z system.concat_4%s	s-conca4.adb		s-conca4.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
 Z system.img_int%s	s-imgint.ads		s-imgint.ali
 Z system.parameters%s	s-parame.adb		s-parame.ali
+Z system.random_numbers%s  s-rannum.adb		s-rannum.ali
 Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
 Z system.task_info%s	s-tasinf.adb		s-tasinf.ali
 Z system.tasking%s	s-taskin.adb		s-taskin.ali
-Z system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
+Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 Z system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+Z system.val_int%s	s-valint.ads		s-valint.ali
 
 D ada.ads		20240521074738 76789da1 ada%s
 D a-assert.ads		20240521074737 ba465f5c ada.assertions%s
 D a-calend.ads		20251218205951 e6961b4c ada.calendar%s
 D a-caldel.ads		20240521074737 9f20b83d ada.calendar.delays%s
+D a-comlin.ads		20240521074737 4aa66568 ada.command_line%s
 D a-except.ads		20240521074738 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20240521074738 bf4f806b ada.finalization%s
+D a-inteio.ads		20240521074738 f64b89a4 ada.integer_text_io%s
 D a-ioexce.ads		20240521074738 40018c65 ada.io_exceptions%s
 D a-numeri.ads		20240521074738 84bea7a3 ada.numerics%s
 D a-nubinu.ads		20240521074738 93f1f3d1 ada.numerics.big_numbers%s
 D a-nbnbig.ads		20240521074738 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-nudira.ads		20240521074738 5984dff3 ada.numerics.discrete_random%s
+D a-nudira.adb		20240521074738 0bfd6ec4 ada.numerics.discrete_random%b
 D a-reatim.ads		20240521074737 b89a10c3 ada.real_time%s
 D a-stream.ads		20240521074738 119b8fb3 ada.streams%s
 D a-string.ads		20240521074738 90ac6797 ada.strings%s
@@ -57,11 +82,12 @@ D a-sttebu.ads		20240521074738 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20240521074738 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20240521074738 9eaa38c6 ada.tags%s
 D a-textio.ads		20240521074738 5c2c6153 ada.text_io%s
+D a-tiinio.ads		20240521074738 e58fa6fb ada.text_io.integer_io%s
 D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
-D dining_philosophers.adb  20260521185910 73b0c6cd dining_philosophers%b
 D interfac.ads		20240521074738 15f799c2 interfaces%s
 D i-c.ads		20240521074738 5c5a6c17 interfaces.c%s
 D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
+D philosophers.adb	20260521194616 5a0e6576 philosophers%b
 D system.ads		20240521074738 426dafb8 system%s
 D s-atacco.ads		20240521074738 903317eb system.address_to_access_conversions%s
 D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
@@ -72,15 +98,21 @@ D s-conca4.ads		20240521074738 33f85f3e system.concat_4%s
 D s-crtl.ads		20240521074738 8a0692f8 system.crtl%s
 D s-exctab.ads		20240521074738 91bef6ef system.exception_table%s
 D s-ficobl.ads		20240521074738 dc5161d4 system.file_control_block%s
+D s-finmas.ads		20240521074738 bd688734 system.finalization_masters%s
 D s-finroo.ads		20240521074738 4ff27390 system.finalization_root%s
 D s-imagei.ads		20240521074738 c707dfd0 system.image_i%s
+D s-imageu.ads		20240521074738 631c6ed0 system.image_u%s
 D s-imgint.ads		20240521074738 d4a52a9b system.img_int%s
+D s-imguns.ads		20240521074738 7867236f system.img_uns%s
 D s-linux.ads		20251218205951 96312dab system.linux%s
 D s-multip.ads		20240521074738 38ac9f73 system.multiprocessors%s
 D s-oscons.ads		20251218205951 ece202eb system.os_constants%s
 D s-osinte.ads		20251218205951 a8f58951 system.os_interface%s
 D s-parame.ads		20251218205951 1f39ba92 system.parameters%s
 D s-putima.ads		20240521074738 17291fe4 system.put_images%s
+D s-rannum.ads		20240521074738 95815eca system.random_numbers%s
+D s-rannum.adb		20240521074738 0f2dcb9a system.random_numbers%b
+D s-ransee.ads		20240521074738 01a57b33 system.random_seed%s
 D s-secsta.ads		20240521074738 578279f5 system.secondary_stack%s
 D s-soflin.ads		20240521074738 df77073e system.soft_links%s
 D s-stache.ads		20240521074738 0b81c1fe system.stack_checking%s
@@ -88,13 +120,14 @@ D s-stausa.ads		20240521074738 5be75682 system.stack_usage%s
 D s-stalib.ads		20240521074738 1c9580f6 system.standard_library%s
 D s-stoele.ads		20240521074738 ab5468e4 system.storage_elements%s
 D s-stoele.adb		20240521074738 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20240521074738 e9fa2dd8 system.storage_pools%s
 D s-tasinf.ads		20240521074737 528dde74 system.task_info%s
 D s-taspri.ads		20240521074737 4ec891e7 system.task_primitives%s
 D s-taprop.ads		20240521074737 6eefbe12 system.task_primitives.operations%s
 D s-taskin.ads		20240521074737 0ec7ab0b system.tasking%s
 D s-taprob.ads		20240521074737 acd6094d system.tasking.protected_objects%s
 D s-tpoben.ads		20240521074737 60ad3dae system.tasking.protected_objects.entries%s
-D s-tasren.ads		20240521074737 a67a9949 system.tasking.rendezvous%s
+D s-tpobop.ads		20240521074737 5f548bb3 system.tasking.protected_objects.operations%s
 D s-tassta.ads		20240521074737 cca55c94 system.tasking.stages%s
 D s-traent.ads		20240521074738 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20240521074738 fa2a7f59 system.unsigned_types%s
@@ -109,33 +142,78 @@ D s-wchcon.ads		20240521074738 d9032363 system.wch_con%s
 D s-widuns.ads		20240521074738 866a5800 system.wid_uns%s
 D s-widthu.ads		20240521074738 b32f15e2 system.width_u%s
 G a e
-G c Z b b [dining_philosophers standard 3 11 none]
+G c Z b b [philosophers standard 6 11 none]
 X 1 ada.ads
-16K9*Ada 20e8 19|1r6 1r23
-X 17 a-textio.ads
-58K13*Text_IO 787e16 19|1w10 1r27
-566U14*Put_Line 19|64s10 77s10 90s7
-X 19 dining_philosophers.adb
-3U11*Dining_Philosophers 3b11 99l5 99t24
-5i4 Num_Philosophers{integer} 36r35 47r48 95r31
-6i4 Meals_Per_Philosopher{integer} 62r21
-11T14 Fork 14l8 14e12 16b14 31l8 31t12 36r60
-12Y13 Take 21b20 23l17 23t21 66s23 69s27
-13Y13 Release 26b20 28l17 28t24 72s26 80s24 81s23
-17b7 In_Use{boolean} 22m16 27m16
-36A9 Fork_Array(11T14)<integer> 38r12
-38a4 Forks{36A9} 66r10 69r13 72r13 80r10 81r10
-43T14 Philosopher 43d27 45b14 93l8 93t19 95r56
-43i27 Id{integer} 46r35 47r36 64r50 77r50 90r47
-46i7 Left{integer} 54r10 55r19 59r20
-47i7 Right{integer} 54r17 56r20 58r19
-49i7 First{integer} 55m10 58m10 66r16 72r19 81r16
-49i14 Second{integer} 56m10 59m10 69r19 80r16
-50i7 Meals{integer} 62r13 83m10 83r19
-51i7 Failures{integer} 73m13 73r25 91r53
-85L12 Retry 74r18
-95a4 Philosophers(43T14)
-X 45 s-stausa.ads
+16K9*Ada 20e8 27|1r6 1r23 2r6 2r31 3r6 4r6 4r28 16r29
+X 5 a-comlin.ads
+36K13*Command_Line 144e21 27|4w10 4r32
+39V13*Argument_Count{natural} 27|151s8
+52V13*Argument{string} 27|152s43 153s48
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[22|46] 27|2w10 2r35
+X 10 a-numeri.ads
+16K13*Numerics 35e17 27|3r10 16r33
+X 13 a-nudira.ads
+44k22*Discrete_Random 81e33 27|3w19 16r42
+50R9 Generator<50|65R9> 27|17r20[16]
+52V13 Random{integer} 27|93s37[16] 100s37[16]
+61U14 Reset<50|103p14> 27|149s14[16]
+X 14 a-nudira.adb
+53V16 Random[50|86]{integer} 51|402b13[27|16]
+65V16 Random[50|86]{integer} 51|402b13[27|16]
+X 21 a-textio.ads
+58K13*Text_IO 787e16 27|1w10 1r27
+566U14*Put_Line 27|92s13 98s13 106s13 114s17 125s17 182s5 184s9
+X 24 interfac.ads
+80M9*Unsigned_32
+83M9*Unsigned_64
+X 27 philosophers.adb
+6U11*Philosophers 6b11 189l5 189t17
+8i5 Default_Num_Philosophers{integer} 11r35 26r33 81r25 82r21 145r31 156r19
+. 161r40 171r27 183r19
+9i5 Default_Meals_Per_Philosopher{integer} 12r40
+11i5 Num_Philosophers{integer} 152m9
+12i5 Meals_Per_Philosopher{integer} 104r26 153m9
+14I13 Delay_Range{integer} 16r58
+16K13 Rand_Int[13|44] 17r11 93r28 100r28 149r5
+17r5 Gen{13|50R9[16]} 93r44 100r44 149r20
+20A10 Stats_Array(integer)<integer> 26r16
+22w15 Stats 29b20 39l9 39t14 142r9 186r32
+23U19 Set 23>23 23>37 30b19 33l13 33t16 142s15
+23i23 Id{integer} 30b23 32r18
+23i37 Value{integer} 30b37 32r25
+24V18 Get{integer} 24>22 35b18 38l13 38t16 186s38
+24i22 Id{integer} 35b22 37r25
+26a9 Data{20A10} 32r13 37r20
+42W20 Fork 46E9 47l9 47e13 49b20 59l9 59t13 81r66 84r56 84r77
+43Y15 Pick_Up 50b15 53l13 53t20 110s22 121s23
+44U19 Put_Down 55b19 58l13 58t21 127s22 134s18 135s19
+46b9 Taken{boolean} 50r32 52r13 57r13
+62W20 Waiter 62d27 66E9 67l9 67e15 69b20 79l9 79t15 82r14
+62i27 Max{integer} 70r43
+63Y15 Request_Seat 70b15 73l13 73t25 107s20
+64U19 Leave_Seat 75b19 78l13 78t23 116s24 128s24 136s20
+66i9 Sitting{integer} 70r33 72r13 72r24 77r13 77r24
+81a5 Forks(42W20) 160m21 160r21 161m22 161r22
+82w5 Butler{62W20} 107r13 116r17 128r17 136r13
+84T15 Philosopher 84d28 84d42 84d62 85r39 87b15 143l9 143t20 158r15
+84i28 Id{integer} 92r48 98r48 106r48 114r52 125r52 142r19
+85P10 Philosopher_Access(84T15) 146r10
+88i9 Failed_Attempts{integer} 113m17 113r36 124m17 124r36 142r23
+90U19 Think 90b19 94l13 94t18 105s13
+96U19 Eat 96b19 96>23 101l13 101t16 132s13
+96i23 Meal_No{integer} 99r82
+104i13 Meal{integer} 132r17
+138L15 Continue_Loop 117r22 129r22
+145a5 Philosophers(85P10) 157m9 172r24
+156i9 I{integer} 157r22 159r19 160r27 161r29
+166b9 All_Done{boolean} 169m13 173m21 177r23
+171i17 I{integer} 172r37
+183i9 I{integer} 184r44 186r42
+X 50 s-rannum.ads
+77V13*Random{24|80M9} 51|224i21
+78V13*Random{24|83M9} 51|224i21
+X 56 s-stausa.ads
 207U14*Initialize 208i<c,__gnat_stack_usage_initialize>22
 272U14*Output_Results 276i<c,__gnat_stack_usage_output_results>22
 
