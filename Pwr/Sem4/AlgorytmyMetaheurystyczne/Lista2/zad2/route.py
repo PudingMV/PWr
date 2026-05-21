@@ -251,7 +251,7 @@ if __name__ == "__main__":
         tsp_name
     )
 
-    route_file = f"tabu_stats_{tsp_name}"
+    route_file = f"TABU_stats_{tsp_name}"
 
     ##########################################################
     # CHECK FILES
