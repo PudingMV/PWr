@@ -12,7 +12,6 @@ import (
 const DefaultNumPhilosophers = 5
 const DefaultMealsPerPhilosopher = 5
 
-// ===== STATYSTYKI =====
 type Stats struct {
 	mu   sync.Mutex
 	data []int
@@ -36,13 +35,10 @@ func (s *Stats) Get(id int) int {
 	return s.data[id]
 }
 
-// ===== FORK =====
 type Fork struct {
 	mu sync.Mutex
 }
 
-// ===== WAITER (SEMAFOR) =====
-// ogranicza liczbę filozofów przy stole
 type Waiter struct {
 	seat chan struct{}
 }
@@ -61,7 +57,6 @@ func (w *Waiter) LeaveSeat() {
 	<-w.seat
 }
 
-// ===== PHILOSOPHER =====
 type Philosopher struct {
 	id     int
 	left   *Fork
@@ -77,7 +72,7 @@ func (p *Philosopher) think() {
 }
 
 func (p *Philosopher) eat(meal int) {
-	fmt.Printf("Filozof %d zjada crispy chicken bacon burgera numer %d\n",
+	fmt.Printf("Filozof %d zjada burgera numer %d\n",
 		p.id+1, meal)
 	time.Sleep(time.Duration(p.rng.Intn(3)+1) * 100 * time.Millisecond)
 }
@@ -96,7 +91,6 @@ func (p *Philosopher) run(meals int, wg *sync.WaitGroup) {
 		leftCh := make(chan bool, 1)
 		rightCh := make(chan bool, 1)
 
-		// lewy widelec
 		go func() {
 			locked := p.left.mu.TryLock()
 			leftCh <- locked
@@ -117,7 +111,6 @@ func (p *Philosopher) run(meals int, wg *sync.WaitGroup) {
 			continue
 		}
 
-		// prawy widelec
 		go func() {
 			locked := p.right.mu.TryLock()
 			rightCh <- locked

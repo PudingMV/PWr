@@ -7,7 +7,6 @@ public class Philosophers {
     static final int DEFAULT_PHILOSOPHERS = 5;
     static final int DEFAULT_MEALS = 5;
 
-    // ===== STATYSTYKI =====
     static class Stats {
         private final int[] data;
         private final Object lock = new Object();
@@ -29,12 +28,10 @@ public class Philosophers {
         }
     }
 
-    // ===== FORK =====
     static class Fork {
         final ReentrantLock lock = new ReentrantLock();
     }
 
-    // ===== WAITER =====
     static class Waiter {
         private final Semaphore seats;
 
@@ -51,7 +48,6 @@ public class Philosophers {
         }
     }
 
-    // ===== PHILOSOPHER =====
     static class Philosopher extends Thread {
         private final int id;
         private final Fork left;
@@ -79,7 +75,7 @@ public class Philosophers {
 
         void eat(int meal) throws InterruptedException {
             System.out.println("Filozof " + (id + 1)
-                    + " zjada crispy chicken bacon burgera numer " + meal);
+                    + " zjada burgera numer " + meal);
             Thread.sleep((rand.nextInt(3) + 1) * 100L);
         }
 
@@ -126,7 +122,6 @@ public class Philosophers {
         }
     }
 
-    // ===== MAIN =====
     public static void main(String[] args) throws InterruptedException {
 
         int numPhilosophers = DEFAULT_PHILOSOPHERS;

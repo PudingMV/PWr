@@ -32,7 +32,7 @@ RV MAX_PROTECTED_ENTRIES=1
 RV MAX_TASKS=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U philosophers%b	philosophers.adb	e34b371a NE OO SU
+U philosophers%b	philosophers.adb	e598b86f NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
@@ -87,7 +87,7 @@ D a-unccon.ads		20240521074738 0e9b276f ada.unchecked_conversion%s
 D interfac.ads		20240521074738 15f799c2 interfaces%s
 D i-c.ads		20240521074738 5c5a6c17 interfaces.c%s
 D i-cstrea.ads		20240521074738 e53d8b8e interfaces.c_streams%s
-D philosophers.adb	20260521194616 5a0e6576 philosophers%b
+D philosophers.adb	20260522084305 5cddea03 philosophers%b
 D system.ads		20240521074738 426dafb8 system%s
 D s-atacco.ads		20240521074738 903317eb system.address_to_access_conversions%s
 D s-assert.ads		20240521074738 9c4520c7 system.assertions%s
@@ -147,8 +147,8 @@ X 1 ada.ads
 16K9*Ada 20e8 27|1r6 1r23 2r6 2r31 3r6 4r6 4r28 16r29
 X 5 a-comlin.ads
 36K13*Command_Line 144e21 27|4w10 4r32
-39V13*Argument_Count{natural} 27|151s8
-52V13*Argument{string} 27|152s43 153s48
+39V13*Argument_Count{natural} 27|148s8
+52V13*Argument{string} 27|149s43 150s48
 X 8 a-inteio.ads
 18K13*Integer_Text_IO[22|46] 27|2w10 2r35
 X 10 a-numeri.ads
@@ -156,60 +156,60 @@ X 10 a-numeri.ads
 X 13 a-nudira.ads
 44k22*Discrete_Random 81e33 27|3w19 16r42
 50R9 Generator<50|65R9> 27|17r20[16]
-52V13 Random{integer} 27|93s37[16] 100s37[16]
-61U14 Reset<50|103p14> 27|149s14[16]
+52V13 Random{integer} 27|90s37[16] 97s37[16]
+61U14 Reset<50|103p14> 27|146s14[16]
 X 14 a-nudira.adb
 53V16 Random[50|86]{integer} 51|402b13[27|16]
 65V16 Random[50|86]{integer} 51|402b13[27|16]
 X 21 a-textio.ads
 58K13*Text_IO 787e16 27|1w10 1r27
-566U14*Put_Line 27|92s13 98s13 106s13 114s17 125s17 182s5 184s9
+566U14*Put_Line 27|89s13 95s13 103s13 111s17 122s17 179s5 181s9
 X 24 interfac.ads
 80M9*Unsigned_32
 83M9*Unsigned_64
 X 27 philosophers.adb
-6U11*Philosophers 6b11 189l5 189t17
-8i5 Default_Num_Philosophers{integer} 11r35 26r33 81r25 82r21 145r31 156r19
-. 161r40 171r27 183r19
+6U11*Philosophers 6b11 186l5 186t17
+8i5 Default_Num_Philosophers{integer} 11r35 25r33 78r25 79r21 142r31 153r19
+. 158r40 168r27 180r19
 9i5 Default_Meals_Per_Philosopher{integer} 12r40
-11i5 Num_Philosophers{integer} 152m9
-12i5 Meals_Per_Philosopher{integer} 104r26 153m9
+11i5 Num_Philosophers{integer} 149m9
+12i5 Meals_Per_Philosopher{integer} 101r26 150m9
 14I13 Delay_Range{integer} 16r58
-16K13 Rand_Int[13|44] 17r11 93r28 100r28 149r5
-17r5 Gen{13|50R9[16]} 93r44 100r44 149r20
-20A10 Stats_Array(integer)<integer> 26r16
-22w15 Stats 29b20 39l9 39t14 142r9 186r32
-23U19 Set 23>23 23>37 30b19 33l13 33t16 142s15
-23i23 Id{integer} 30b23 32r18
-23i37 Value{integer} 30b37 32r25
-24V18 Get{integer} 24>22 35b18 38l13 38t16 186s38
-24i22 Id{integer} 35b22 37r25
-26a9 Data{20A10} 32r13 37r20
-42W20 Fork 46E9 47l9 47e13 49b20 59l9 59t13 81r66 84r56 84r77
-43Y15 Pick_Up 50b15 53l13 53t20 110s22 121s23
-44U19 Put_Down 55b19 58l13 58t21 127s22 134s18 135s19
-46b9 Taken{boolean} 50r32 52r13 57r13
-62W20 Waiter 62d27 66E9 67l9 67e15 69b20 79l9 79t15 82r14
-62i27 Max{integer} 70r43
-63Y15 Request_Seat 70b15 73l13 73t25 107s20
-64U19 Leave_Seat 75b19 78l13 78t23 116s24 128s24 136s20
-66i9 Sitting{integer} 70r33 72r13 72r24 77r13 77r24
-81a5 Forks(42W20) 160m21 160r21 161m22 161r22
-82w5 Butler{62W20} 107r13 116r17 128r17 136r13
-84T15 Philosopher 84d28 84d42 84d62 85r39 87b15 143l9 143t20 158r15
-84i28 Id{integer} 92r48 98r48 106r48 114r52 125r52 142r19
-85P10 Philosopher_Access(84T15) 146r10
-88i9 Failed_Attempts{integer} 113m17 113r36 124m17 124r36 142r23
-90U19 Think 90b19 94l13 94t18 105s13
-96U19 Eat 96b19 96>23 101l13 101t16 132s13
-96i23 Meal_No{integer} 99r82
-104i13 Meal{integer} 132r17
-138L15 Continue_Loop 117r22 129r22
-145a5 Philosophers(85P10) 157m9 172r24
-156i9 I{integer} 157r22 159r19 160r27 161r29
-166b9 All_Done{boolean} 169m13 173m21 177r23
-171i17 I{integer} 172r37
-183i9 I{integer} 184r44 186r42
+16K13 Rand_Int[13|44] 17r11 90r28 97r28 146r5
+17r5 Gen{13|50R9[16]} 90r44 97r44 146r20
+19A10 Stats_Array(integer)<integer> 25r16
+21w15 Stats 28b20 38l9 38t14 139r9 183r32
+22U19 Set 22>23 22>37 29b19 32l13 32t16 139s15
+22i23 Id{integer} 29b23 31r18
+22i37 Value{integer} 29b37 31r25
+23V18 Get{integer} 23>22 34b18 37l13 37t16 183s38
+23i22 Id{integer} 34b22 36r25
+25a9 Data{19A10} 31r13 36r20
+40W20 Fork 44E9 45l9 45e13 47b20 57l9 57t13 78r66 81r56 81r77
+41Y15 Pick_Up 48b15 51l13 51t20 107s22 118s23
+42U19 Put_Down 53b19 56l13 56t21 124s22 131s18 132s19
+44b9 Taken{boolean} 48r32 50r13 55r13
+59W20 Waiter 59d27 63E9 64l9 64e15 66b20 76l9 76t15 79r14
+59i27 Max{integer} 67r43
+60Y15 Request_Seat 67b15 70l13 70t25 104s20
+61U19 Leave_Seat 72b19 75l13 75t23 113s24 125s24 133s20
+63i9 Sitting{integer} 67r33 69r13 69r24 74r13 74r24
+78a5 Forks(40W20) 157m21 157r21 158m22 158r22
+79w5 Butler{59W20} 104r13 113r17 125r17 133r13
+81T15 Philosopher 81d28 81d42 81d62 82r39 84b15 140l9 140t20 155r15
+81i28 Id{integer} 89r48 95r48 103r48 111r52 122r52 139r19
+82P10 Philosopher_Access(81T15) 143r10
+85i9 Failed_Attempts{integer} 110m17 110r36 121m17 121r36 139r23
+87U19 Think 87b19 91l13 91t18 102s13
+93U19 Eat 93b19 93>23 98l13 98t16 129s13
+93i23 Meal_No{integer} 96r61
+101i13 Meal{integer} 129r17
+135L15 Continue_Loop 114r22 126r22
+142a5 Philosophers(82P10) 154m9 169r24
+153i9 I{integer} 154r22 156r19 157r27 158r29
+163b9 All_Done{boolean} 166m13 170m21 174r23
+168i17 I{integer} 169r37
+180i9 I{integer} 181r44 183r42
 X 50 s-rannum.ads
 77V13*Random{24|80M9} 51|224i21
 78V13*Random{24|83M9} 51|224i21

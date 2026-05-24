@@ -9,14 +9,12 @@ public class StarMessaging {
 
     static Random rng = new Random();
 
-    // ---------------- SMALL DELAY ----------------
     static void smallDelay() {
         try {
             Thread.sleep(30);
         } catch (InterruptedException ignored) {}
     }
 
-    // ---------------- COUNTER ----------------
     static class Counter {
         private final int[] data;
 
@@ -33,7 +31,6 @@ public class StarMessaging {
         }
     }
 
-    // ---------------- COMPLETION ----------------
     static class Completion {
         private int count = 0;
         private int expected = 0;
@@ -52,7 +49,6 @@ public class StarMessaging {
         }
     }
 
-    // ---------------- SERVER ----------------
     static class Server implements Runnable {
 
         static class Message {
@@ -103,7 +99,6 @@ public class StarMessaging {
         }
     }
 
-    // ---------------- USER ----------------
     static class User implements Runnable {
         int id;
         Server server;
@@ -132,7 +127,6 @@ public class StarMessaging {
         }
     }
 
-    // ---------------- MAIN ----------------
     public static void main(String[] args) throws Exception {
 
         if (args.length != 2) {
@@ -161,7 +155,6 @@ public class StarMessaging {
             t.start();
         }
 
-        // wait for users
         while (!completion.done()) {
             Thread.sleep(10);
         }

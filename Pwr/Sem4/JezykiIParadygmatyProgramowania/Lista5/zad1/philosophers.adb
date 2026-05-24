@@ -16,7 +16,6 @@ procedure Philosophers is
     package Rand_Int is new Ada.Numerics.Discrete_Random(Delay_Range);
     Gen : Rand_Int.Generator;
 
-    -- ===== STATYSTYKI GLOBALNE =====
     type Stats_Array is array (Natural range <>) of Integer;
 
     protected Stats is
@@ -38,7 +37,6 @@ procedure Philosophers is
         end Get;
     end Stats;
 
-    -- ===== FORK =====
     protected type Fork is
         entry Pick_Up;
         procedure Put_Down;
@@ -58,7 +56,6 @@ procedure Philosophers is
         end Put_Down;
     end Fork;
 
-    -- ===== WAITER =====
     protected type Waiter(Max : Integer) is
         entry Request_Seat;
         procedure Leave_Seat;
@@ -96,7 +93,7 @@ procedure Philosophers is
         procedure Eat(Meal_No : Integer) is
         begin
             Put_Line("Filozof" & Integer'Image(Id + 1) &
-                     " zjada crispy chicken bacon burgera numer" & Integer'Image(Meal_No));
+                     " zjada burgera numer" & Integer'Image(Meal_No));
             delay Duration(Rand_Int.Random(Gen));
         end Eat;
 

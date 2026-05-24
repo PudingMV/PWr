@@ -16,12 +16,10 @@ var (
 	rng = rand.New(rand.NewSource(time.Now().UnixNano()))
 )
 
-// --- small delay ---
 func SmallDelay() {
 	time.Sleep(30 * time.Millisecond)
 }
 
-// --- COUNTER (protected) ---
 type Counter struct {
 	mu   sync.Mutex
 	data []int
@@ -44,8 +42,6 @@ func (c *Counter) Get(id int) int {
 	defer c.mu.Unlock()
 	return c.data[id-1]
 }
-
-// --- SERVER ---
 
 type SendRequest struct {
 	From int
@@ -101,8 +97,6 @@ func (s *Server) Stop() {
 	s.wg.Wait()
 }
 
-// --- COMPLETION ---
-
 type Completion struct {
 	mu       sync.Mutex
 	count    int
@@ -128,8 +122,6 @@ func (c *Completion) Done() bool {
 	return c.count == c.expected
 }
 
-// --- USER TASK ---
-
 func userTask(id int, server *Server, done *Completion) {
 	for i := 1; i <= MESSAGES_PER_USER; i++ {
 		target := (rng.Intn(NUM_USERS) % NUM_USERS) + 1
@@ -143,8 +135,6 @@ func userTask(id int, server *Server, done *Completion) {
 	fmt.Printf("USER %d finished\n", id)
 	done.OneDone()
 }
-
-// --- MAIN ---
 
 func main() {
 	if len(os.Args) != 3 {
@@ -164,12 +154,10 @@ func main() {
 	done := &Completion{}
 	done.Init(NUM_USERS)
 
-	// start users
 	for i := 1; i <= NUM_USERS; i++ {
 		go userTask(i, server, done)
 	}
 
-	// wait until all users finish
 	for !done.Done() {
 		time.Sleep(10 * time.Millisecond)
 	}
