@@ -16,35 +16,40 @@ struct City {
     double x, y;
 };
 
-vector<vector<double>> distMat;
+vector<vector<int>> distMat;
 
-inline double D(int a, int b) {
+inline int D(int a, int b) {
     return distMat[a][b];
 }
 
 void buildDistanceMatrix(const vector<City>& c) {
     int n = c.size();
-    distMat.assign(n, vector<double>(n));
+    distMat.assign(n, vector<int>(n, 0));
 
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
+
             double dx = c[i].x - c[j].x;
             double dy = c[i].y - c[j].y;
-            double d = sqrt(dx * dx + dy * dy);
-            distMat[i][j] = distMat[j][i] = d;
+
+            int d = (int)(sqrt(dx * dx + dy * dy) + 0.5);
+
+            distMat[i][j] = d;
+            distMat[j][i] = d;
         }
     }
 }
 
 inline int routeCost(const vector<int>& r) {
-    double s = 0;
+    int s = 0;
+
     int n = r.size();
+
     for (int i = 0; i < n; i++) {
-        int a = r[i];
-        int b = r[(i + 1 == n ? 0 : i + 1)];
-        s += D(a, b);
+        s += D(r[i], r[(i + 1) % n]);
     }
-    return (int)s;
+
+    return s;
 }
 
 struct Individual {
@@ -53,13 +58,7 @@ struct Individual {
     int cost;
 };
 
-struct IndividualFast {
-    vector<int> route;
-    vector<int> pos;
-    int cost;
-};
-
-inline void buildPos(IndividualFast &ind) {
+inline void buildPos(Individual &ind) {
     int n = ind.route.size();
     ind.pos.assign(n, 0);
     for (int i = 0; i < n; i++)
@@ -106,7 +105,7 @@ vector<int> randomRoute(int n) {
 }
 
 vector<int> initRoute(int n) {
-    if (rnd01() < 0.7)
+    if (rnd01() < 0.2)
         return nearestNeighbor(n);
     return randomRoute(n);
 }
@@ -139,8 +138,8 @@ vector<vector<int>> buildCandidates(const vector<City>& cities, int K = 15) {
     return cand;
 }
 
-vector<IndividualFast> createPopulation(int n, int popSize) {
-    vector<IndividualFast> pop(popSize);
+vector<Individual> createPopulation(int n, int popSize) {
+    vector<Individual> pop(popSize);
 
     #pragma omp parallel for
     for (int i = 0; i < popSize; i++) {
@@ -155,7 +154,7 @@ vector<IndividualFast> createPopulation(int n, int popSize) {
     return pop;
 }
 
-const IndividualFast& tournament(const vector<IndividualFast>& pop, int k) {
+const Individual& tournament(const vector<Individual>& pop, int k) {
     int best = rndInt(0, pop.size() - 1);
 
     for (int i = 1; i < k; i++) {
@@ -200,13 +199,34 @@ void mutate(vector<int>& r) {
     reverse(r.begin() + i, r.begin() + j + 1);
 }
 
+void doubleBridge(vector<int>& r)
+{
+    int n = r.size();
+
+    if (n < 8) return;
+
+    int a = rndInt(1, n / 4);
+    int b = rndInt(a + 1, n / 2);
+    int c = rndInt(b + 1, 3 * n / 4);
+
+    vector<int> t;
+    t.reserve(n);
+
+    t.insert(t.end(), r.begin(),     r.begin() + a);
+    t.insert(t.end(), r.begin() + c, r.end());
+    t.insert(t.end(), r.begin() + b, r.begin() + c);
+    t.insert(t.end(), r.begin() + a, r.begin() + b);
+
+    r.swap(t);
+}
+
 void localImprove(vector<int>& route,
                   vector<int>& pos,
                   const vector<vector<int>>& cand)
 {
     int n = route.size();
 
-    for (int iter = 0; iter < 20; iter++) {
+    for (int iter = 0; iter < 10; iter++) {
         bool improved = false;
 
         for (int i = 0; i < n - 1; i++) {
@@ -242,8 +262,8 @@ void localImprove(vector<int>& route,
 }
 
 struct Island {
-    vector<IndividualFast> pop;
-    IndividualFast best;
+    vector<Individual> pop;
+    Individual best;
     double mutationRate = 0.02;
     int stagnant = 0;
 };
@@ -289,7 +309,7 @@ void GA_step(Island &island,
     if (island.stagnant > 300) pm = 0.20;
     if (island.stagnant > 500) pm = 0.30;
 
-    vector<IndividualFast> next(popSize);
+    vector<Individual> next(popSize);
 
     vector<int> idx(popSize);
     iota(idx.begin(), idx.end(), 0);
@@ -302,20 +322,26 @@ void GA_step(Island &island,
     #pragma omp parallel for
     for (int i = 10; i < popSize; i++) {
 
-        const auto& p1 = tournament(pop, 8);
-        const auto& p2 = tournament(pop, 8);
+        const auto& p1 = tournament(pop, 4);
+        const auto& p2 = tournament(pop, 4);
 
         vector<int> child = crossoverOX(p1.route, p2.route);
 
-        if (rnd01() < pm)
+    if (rnd01() < pm)
+    {
+        if (rnd01() < 0.7)
             mutate(child);
+        else
+            doubleBridge(child);
+    }
 
-        IndividualFast ind;
+        Individual ind;
         ind.route = move(child);
 
         buildPos(ind);
 
-        localImprove(ind.route, ind.pos, cand);
+        if (rnd01() < 0.3)
+            localImprove(ind.route, ind.pos, cand);
 
         ind.cost = routeCost(ind.route);
 
@@ -379,7 +405,7 @@ void solve(const vector<string>& files) {
 
         auto islands = initIslands(n, islandsCount, popSize);
 
-        IndividualFast globalBest;
+        Individual globalBest;
         globalBest.cost = INT_MAX;
 
         auto start = chrono::high_resolution_clock::now();

@@ -407,7 +407,7 @@ void solve(const vector<string>& files) {
 
         int islandsCount = 5;
         int popSize = 1500;
-        int generations = 20000;
+        int generations = 10000;
 
         auto islands = initIslands(n, islandsCount, popSize);
 
