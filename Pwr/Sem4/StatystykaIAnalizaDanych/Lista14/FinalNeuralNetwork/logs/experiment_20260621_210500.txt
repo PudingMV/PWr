@@ -1,0 +1,14 @@
+EXPERIMENT START
+20260621_210500
+
+Loading dataset...
+Samples: 18846
+Classes: 20
+
+Dataset split
+Train: 12060
+Validation: 3016
+Test: 3770
+
+Majority baseline: 0.0531
+DUMMY CLASSIFIER

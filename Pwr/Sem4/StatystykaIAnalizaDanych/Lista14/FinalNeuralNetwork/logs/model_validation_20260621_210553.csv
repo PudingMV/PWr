@@ -1,0 +1,6 @@
+model,validation_accuracy,best_params
+Logistic Regression,0.9121352785145889,"{'classifier__C': 10, 'tfidf__max_features': 100000, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 1), 'tfidf__stop_words': 'english', 'tfidf__sublinear_tf': True}"
+Linear SVM,0.9210875331564987,"{'classifier__C': 2, 'classifier__loss': 'squared_hinge', 'tfidf__max_features': 100000, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 2), 'tfidf__stop_words': 'english', 'tfidf__sublinear_tf': True}"
+Naive Bayes,0.8992042440318302,"{'classifier__alpha': 0.01, 'tfidf__max_features': 100000, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 1), 'tfidf__stop_words': 'english', 'tfidf__sublinear_tf': True}"
+Random Forest,0.8289124668435013,"{'classifier__max_depth': None, 'classifier__n_estimators': 200, 'tfidf__max_features': 10000, 'tfidf__stop_words': 'english'}"
+KNN,0.7907824933687002,"{'classifier__n_neighbors': 7, 'classifier__weights': 'distance', 'tfidf__max_features': 30000, 'tfidf__stop_words': 'english'}"
